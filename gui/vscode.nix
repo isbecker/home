@@ -1,4 +1,7 @@
 { flake, pkgs, ... }:
+let
+  vscode_extensions = flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
+in
 {
     programs.vscode = {
         enable = true;
@@ -23,7 +26,7 @@
         };
         mutableExtensionsDir = false;
 
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with vscode_extensions; [
           bbenoist.nix
           jnoortheen.nix-ide
           mkhl.direnv
@@ -33,13 +36,8 @@
           catppuccin.catppuccin-vsc-icons
           tamasfe.even-better-toml
           ms-azuretools.vscode-docker
-        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "treefmt-vscode";
-            publisher = "ibecker";
-            version = "2.0.5";
-            sha256 = "sha256-LEyUCkrVIsEc5FB2n7cVWD1viQFVNCtEMwBNEmI8RGo=";
-          }
+          ibecker.treefmt-vscode
+          gitlab.gitlab-workflow
         ];
     };
 }
