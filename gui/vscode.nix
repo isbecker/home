@@ -2,6 +2,8 @@
 {
     programs.vscode = {
         enable = true;
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
         userSettings = {
           files.autoSave = "afterDelay";
           editor ={
@@ -19,18 +21,25 @@
             confirmSync = false;
           };
         };
-        extensions = [
-          pkgs.vscode-extensions.bbenoist.nix
-          pkgs.vscode-extensions.jnoortheen.nix-ide
-          pkgs.vscode-extensions.mkhl.direnv
-          pkgs.vscode-extensions.ms-python.python
-          pkgs.vscode-extensions.mhutchie.git-graph
-          pkgs.vscode-extensions.catppuccin.catppuccin-vsc
-          pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
-          pkgs.vscode-extensions.tamasfe.even-better-toml
-          pkgs.vscode-extensions.ms-azuretools.vscode-docker
-          pkgs.vscode-extensions.gitlab.gitlab-workflow
-        ];
+        mutableExtensionsDir = false;
 
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          jnoortheen.nix-ide
+          mkhl.direnv
+          ms-python.python
+          mhutchie.git-graph
+          catppuccin.catppuccin-vsc
+          catppuccin.catppuccin-vsc-icons
+          tamasfe.even-better-toml
+          ms-azuretools.vscode-docker
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "treefmt-vscode";
+            publisher = "ibecker";
+            version = "2.0.5";
+            sha256 = "sha256-LEyUCkrVIsEc5FB2n7cVWD1viQFVNCtEMwBNEmI8RGo=";
+          }
+        ];
     };
 }
