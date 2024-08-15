@@ -1,4 +1,16 @@
 { flake, pkgs, ... }:
+# let 
+#  aw-watcher-tmux = pkgs.tmuxPlugins.mkTmuxPlugin {
+#   pluginName = "aw-watcher-tmux";
+#   version = "1.0";
+#   src = pkgs.fetchFromGitHub {
+#     owner = "akohlbecker";
+#     repo = "aw-watcher-tmux";
+#     rev = "efaa7610add52bd2b39cd98d0e8e082b1e126487";
+#     sha256 = "sha256-L6YLyEOmb+vdz6bJdB0m5gONPpBp2fV3i9PiLSNrZNM=";
+#   };
+#  };
+# in 
 {
     programs.tmux = {
       enable = true;
@@ -17,6 +29,7 @@
         set-option -g automatic-rename-format '#{b:pane_current_path}'
       '';
       plugins =  with pkgs; [
+        # aw-watcher-tmux
         {
           plugin = tmuxPlugins.yank;
         }
