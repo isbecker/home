@@ -15,6 +15,9 @@
           };
           explorer.confirmDragAndDrop = false;
           diffEditor.ignoreTrimWhitespace = false;
+          git = {
+            confirmSync = false;
+          };
         };
         extensions = [
           pkgs.vscode-extensions.bbenoist.nix
