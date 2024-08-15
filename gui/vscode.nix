@@ -26,7 +26,7 @@
           pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
           pkgs.vscode-extensions.tamasfe.even-better-toml
           pkgs.vscode-extensions.ms-azuretools.vscode-docker
-          pkgs.vscode-extension-gitlab-gitlab-workflow
+          pkgs.vscode-extensions.gitlab.gitlab-workflow
         ];
 
     };
