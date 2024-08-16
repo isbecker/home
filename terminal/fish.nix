@@ -9,6 +9,7 @@
 
     interactiveShellInit = ''
       fzf_configure_bindings --directory=\cf
+      jira completion fish | source
     '';
 
     plugins = [
