@@ -3,8 +3,8 @@
   programs.fish = {
     enable = true;
     loginShellInit = ''
-    set -gx NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/$USER/channels $NIX_PATH
-    set -gx PATH $PATH $HOME/.local/bin /usr/local/go/bin
+      set -gx NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/$USER/channels $NIX_PATH
+      set -gx PATH $PATH $HOME/.local/bin /usr/local/go/bin
     '';
 
     interactiveShellInit = ''
