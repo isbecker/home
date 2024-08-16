@@ -50,7 +50,7 @@ in
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
       tamasfe.even-better-toml
-      ms-azuretools.vscode-docker
+      # ms-azuretools.vscode-docker # not helpful if we're using podman
       ibecker.treefmt-vscode
       gitlab.gitlab-workflow
     ];
