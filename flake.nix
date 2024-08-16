@@ -64,11 +64,18 @@
 
           devenv.shells.default = {
             name = "home";
-
-            packages = [
-              pkgs.treefmt2
-              pkgs.nixpkgs-fmt
-            ];
+            pre-commit.hooks = {
+              treefmt = {
+                package = pkgs.treefmt2;
+                enable = true;
+                settings = {
+                  formatters = [
+                    pkgs.nixpkgs-fmt
+                    pkgs.taplo # TOML - primarily just for the treefmt config files
+                  ];
+                };
+              };
+            };
           };
         };
 

@@ -1,2 +1,5 @@
 .direnv
 .devenv
+
+# this is managed by flake.nix and isn't a real file 🙂
+.pre-commit-config.yaml
