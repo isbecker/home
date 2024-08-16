@@ -31,7 +31,8 @@ in
     TERMINAL = "kitty";
     EDITOR = "nvim";
     BROWSER = "firefox";
-    PAGER = "${pkgs.moar}/bin/moar --style=catppuccin-macchiato";
+    PAGER = "${pkgs.moar}/bin/moar";
+    MOAR = "--style=catppuccin-macchiato";
 
     GITLAB_HOST = "cm.infra.he2pi.com";
     GITLAB_URI = "https://cm.infra.he2pi.com";
