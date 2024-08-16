@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
 {
-    programs.ranger = {
-      enable = true;
-    };
+  programs.ranger = {
+    enable = true;
+  };
 }

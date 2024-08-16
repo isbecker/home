@@ -15,11 +15,13 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
-    
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs = inputs@{ self, ... }:
@@ -27,6 +29,7 @@
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
       imports = [
         inputs.nixos-flake.flakeModule
+        inputs.devenv.flakeModule
       ];
 
       perSystem = { pkgs, ... }:
@@ -58,37 +61,46 @@
 
                 nixGL.prefix = nixGLPrefix;
               });
+
+          devenv.shells.default = {
+            name = "home";
+
+            packages = [
+              pkgs.treefmt2
+              pkgs.nixpkgs-fmt
+            ];
+          };
         };
 
       flake = {
         # All home-manager configurations are kept here.
         homeModules.default = { pkgs, config, ... }:
-        {
-          imports = [
-            ./home.nix
-          ];
+          {
+            imports = [
+              ./home.nix
+            ];
 
-          catppuccin = {
-            enable = true;
-            flavor = "macchiato";
+            catppuccin = {
+              enable = true;
+              flavor = "macchiato";
+            };
+
+            home.packages = with pkgs; [
+              (config.lib.nixGL.wrap kooha)
+            ];
+
+            programs = {
+              kitty = {
+                package = (config.lib.nixGL.wrap pkgs.kitty);
+              };
+              firefox = {
+                package = (config.lib.nixGL.wrap pkgs.firefox);
+              };
+              vscode = {
+                package = (config.lib.nixGL.wrap pkgs.vscode);
+              };
+            };
           };
-
-          home.packages = with pkgs; [
-            (config.lib.nixGL.wrap kooha)
-          ];
-
-          programs = {
-            kitty = {
-              package = (config.lib.nixGL.wrap pkgs.kitty);
-            };
-            firefox = {
-              package = (config.lib.nixGL.wrap pkgs.firefox);
-            };
-            vscode = {
-              package = (config.lib.nixGL.wrap pkgs.vscode);
-            };
-          };
-        };
       };
     };
 }

@@ -1,11 +1,11 @@
 { flake, pkgs, ... }:
 {
-    programs.k9s = {
-      enable = true;
+  programs.k9s = {
+    enable = true;
+    aliases = {
       aliases = {
-        aliases = {
-            pp = "v1/pods";
-        };
+        pp = "v1/pods";
       };
     };
+  };
 }

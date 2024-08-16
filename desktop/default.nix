@@ -1,4 +1,4 @@
-{ flake, pkgs, ...}:
+{ flake, pkgs, ... }:
 {
   imports = [
     ./dunst.nix

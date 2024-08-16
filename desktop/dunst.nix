@@ -1,4 +1,4 @@
-{ flake, pkgs, ...}:
+{ flake, pkgs, ... }:
 {
   services.dunst = {
     enable = true;

@@ -1,4 +1,4 @@
-{ flake, pkgs, ...}:
+{ flake, pkgs, ... }:
 {
   programs.gitui = {
     enable = true;

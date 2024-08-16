@@ -1,5 +1,5 @@
 { flake, pkgs, ... }:
-let 
+let
 
 
 in
@@ -11,13 +11,13 @@ in
 
     # terminal config; eg: tmux, starship, etc
     ./terminal
-    
+
     # firefox, vscode, etc
     ./gui
 
     # terminal apps; eg: k9s, neovim, etc
     ./terminal-apps
-    
+
     # systemd services; eg: flameshot, barrier, etc
     ./services
   ];
@@ -65,7 +65,7 @@ in
 
     go
 
-    (nerdfonts.override { fonts = [ "Hack" "Iosevka" "IosevkaTerm" "IosevkaTermSlab"  ]; })
+    (nerdfonts.override { fonts = [ "Hack" "Iosevka" "IosevkaTerm" "IosevkaTermSlab" ]; })
   ];
 
   fonts.fontconfig.enable = true;

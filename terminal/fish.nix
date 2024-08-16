@@ -19,10 +19,10 @@
         # nix-prefetch-github --rev v10.2 PatrickF1 fzf.fish
         name = "fzf.fish";
         src = pkgs.fetchFromGitHub {
-            owner = "PatrickF1";
-            repo = "fzf.fish";
-            rev = "85503fbc4b6026c616dd5dc8ebb4cfb82e1ef16c"; # v10.2
-            sha256 = "sha256-1/MLKkUHe4c9YLDrH+cnL+pLiSOSERbIZSM4FTG3wF0=";
+          owner = "PatrickF1";
+          repo = "fzf.fish";
+          rev = "85503fbc4b6026c616dd5dc8ebb4cfb82e1ef16c"; # v10.2
+          sha256 = "sha256-1/MLKkUHe4c9YLDrH+cnL+pLiSOSERbIZSM4FTG3wF0=";
         };
       }
     ];
@@ -30,14 +30,14 @@
       fzf = {
         body =
           ''
-          if set --query TMUX
-            fzf-tmux $argv
-          else
-            command fzf $argv
-          end
+            if set --query TMUX
+              fzf-tmux $argv
+            else
+              command fzf $argv
+            end
           '';
         wraps = "fzf";
-        description="Use fzf-tmux if in tmux session";
+        description = "Use fzf-tmux if in tmux session";
       };
       update_aws_config = {
         body = ''
@@ -64,5 +64,5 @@
       };
     };
   };
-  
+
 }

@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
 {
-    programs.jq = {
-      enable = true;
-    };
+  programs.jq = {
+    enable = true;
+  };
 }

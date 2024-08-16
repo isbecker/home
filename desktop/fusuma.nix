@@ -1,4 +1,4 @@
-{ flake, pkgs, ...}:
+{ flake, pkgs, ... }:
 {
   services.fusuma = {
     enable = true;
@@ -22,10 +22,10 @@
         };
         "4" = {
           left = {
-            command =  "${pkgs.xdotool}/bin/xdotool click 9";
+            command = "${pkgs.xdotool}/bin/xdotool click 9";
           };
           right = {
-            command =  "${pkgs.xdotool}/bin/xdotool click 8";
+            command = "${pkgs.xdotool}/bin/xdotool click 8";
           };
         };
       };
@@ -33,7 +33,7 @@
       #   "in" = {
       #     command =  "${pkgs.xdotool}/bin/xdotool key ctrl+shift+plus";
       #   };
-          
+
       #   "out" = {
       #     command =  "${pkgs.xdotool}/bin/xdotool key ctrl+shift+minus";
       #   };

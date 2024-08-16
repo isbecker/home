@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
 {
-    programs.joshuto = {
-      enable = true;
-    };
+  programs.joshuto = {
+    enable = true;
+  };
 }

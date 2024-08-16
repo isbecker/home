@@ -14,42 +14,42 @@ let
   };
 in
 {
-    imports = [
-      ./awscli.nix
-      ./btop.nix
-      ./git-cliff.nix
-      ./gitui.nix
-      ./joshuto.nix
-      ./jq.nix
-      ./k9s.nix
-      ./neovim.nix
-      ./ranger.nix
-    ];
+  imports = [
+    ./awscli.nix
+    ./btop.nix
+    ./git-cliff.nix
+    ./gitui.nix
+    ./joshuto.nix
+    ./jq.nix
+    ./k9s.nix
+    ./neovim.nix
+    ./ranger.nix
+  ];
 
-    home.packages = with pkgs; [
-      # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
-      # work.
-      less
-      
-      pass
-      pass-git-helper
-      
-      gpg-tui
-      
-      # glab # gitlab cli, hasn't been updated in a while...
-      gitlabCli # the fetchTarball above is from the latest release
-      jira-cli-go
+  home.packages = with pkgs; [
+    # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
+    # work.
+    less
 
-      podman
-      podman-compose
+    pass
+    pass-git-helper
 
-      vault
+    gpg-tui
 
-      kubectl
-      kind
-      k3d
-      crossplane-cli
-      argocd
-      kubernetes-helm
-    ];
+    # glab # gitlab cli, hasn't been updated in a while...
+    gitlabCli # the fetchTarball above is from the latest release
+    jira-cli-go
+
+    podman
+    podman-compose
+
+    vault
+
+    kubectl
+    kind
+    k3d
+    crossplane-cli
+    argocd
+    kubernetes-helm
+  ];
 }
