@@ -35,6 +35,11 @@
       enable = true;
       enableFishIntegration = true;
     };
+
+    dircolors = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   home.packages = with pkgs; [
