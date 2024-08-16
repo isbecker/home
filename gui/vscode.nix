@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, config, ... }:
 let
   vscode_extensions = flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
 in
@@ -22,6 +22,21 @@ in
       diffEditor.ignoreTrimWhitespace = false;
       git = {
         confirmSync = false;
+      };
+      catppuccin = {
+        accentColor = "lavender";
+        extraBordersEnabled = true;
+      };
+      direnv = {
+        restart.automatic = true;
+        path.executable = "${config.home.profileDirectory}/bin/direnv";
+      };
+      treefmt = {
+        command = "${pkgs.treefmt2}/bin/treefmt";
+      };
+      gitlab = {
+        aiAssistedCodeSuggestions.enabled = false;
+        duo.enabledWithoutGitlabProject = false;
       };
     };
     mutableExtensionsDir = false;
