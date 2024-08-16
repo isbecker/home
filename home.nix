@@ -24,6 +24,8 @@ in
 
   nixpkgs.config.allowUnfreePredicate = _: true;
 
+  news.display = "show";
+
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "i3";
     TERMINAL = "kitty";
