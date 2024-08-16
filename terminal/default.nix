@@ -27,6 +27,7 @@
     };
     direnv = {
       enable = true;
+      nix-direnv.enable = true;
     };
     fd = {
       enable = true;
