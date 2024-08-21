@@ -38,6 +38,20 @@ in
         aiAssistedCodeSuggestions.enabled = false;
         duo.enabledWithoutGitlabProject = false;
       };
+      gitlens = {
+        remotes = [
+          {
+            domain = "cm.infra.he2pi.com";
+            type = "GitLab";
+          }
+        ];
+        autolinks = [
+          {
+            prefix = "INF-";
+            url = "https://jira.corp.he2pi.com/browse/INF-<num>";
+          }
+        ];
+      };
     };
     mutableExtensionsDir = false;
 
@@ -46,13 +60,16 @@ in
       jnoortheen.nix-ide
       mkhl.direnv
       ms-python.python
-      mhutchie.git-graph
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
       tamasfe.even-better-toml
       # ms-azuretools.vscode-docker # not helpful if we're using podman
       ibecker.treefmt-vscode
+
       gitlab.gitlab-workflow
+
+      mhutchie.git-graph
+      eamodio.gitlens
     ];
   };
 }
