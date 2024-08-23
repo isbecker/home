@@ -28,7 +28,6 @@ in
         extraBordersEnabled = true;
       };
       direnv = {
-        restart.automatic = true;
         path.executable = "${config.home.profileDirectory}/bin/direnv";
       };
       treefmt = {
