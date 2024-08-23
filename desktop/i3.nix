@@ -46,6 +46,11 @@
           notification = false;
         }
         {
+          command = "systemctl --user restart picom.service";
+          always = true;
+          notification = false;
+        }
+        {
           command = "systemctl --user restart barrierc.service";
           always = true;
           notification = false;
