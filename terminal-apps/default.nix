@@ -23,6 +23,7 @@ in
     ./jq.nix
     ./k9s.nix
     ./neovim.nix
+    ./nixvim.nix
     ./ranger.nix
   ];
 
