@@ -1,9 +1,5 @@
 { flake, pkgs, ... }:
 {
-  imports = [
-    flake.inputs.nixvim.homeManagerModules.nixvim
-  ];
-
   programs.nixvim = {
     enable = true;
     colorschemes = {
@@ -31,13 +27,13 @@
 
     plugins = {
       direnv.enable = true;
-      telescope.enable = true;
       neo-tree = {
         enable = true;
         enableGitStatus = true;
         enableModifiedMarkers = true;
         enableRefreshOnWrite = true;
       };
+      indent-o-matic.enable = true;
     };
 
     keymaps = [

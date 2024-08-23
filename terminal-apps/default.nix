@@ -22,8 +22,7 @@ in
     ./joshuto.nix
     ./jq.nix
     ./k9s.nix
-    ./neovim.nix
-    ./nixvim.nix
+    ./nixvim
     ./ranger.nix
   ];
 
