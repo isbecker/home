@@ -30,6 +30,7 @@ in
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+    nvimpager
 
     pass
     pass-git-helper
