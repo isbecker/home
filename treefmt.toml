@@ -2,7 +2,6 @@
 command  = "nixpkgs-fmt"
 includes = ["*.nix"]
 
-
 [formatter.toml]
 command  = "taplo"
 options  = ["fmt", "--option", "align_entries=true"]
