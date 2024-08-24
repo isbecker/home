@@ -1,4 +1,3 @@
-{ flake, pkgs, ... }:
 {
   programs.nixvim = {
     enable = true;
@@ -15,8 +14,12 @@
               indentscope_color = "";
             };
             notify = false;
-            nvimtree = true;
+            neo-tree.nvim = true;
             treesitter = true;
+            telescope = true;
+            dashboard = true;
+            diffview = true;
+            barbar = true;
           };
         };
       };
@@ -33,7 +36,54 @@
         enableModifiedMarkers = true;
         enableRefreshOnWrite = true;
       };
+      barbar.enable = true;
+      leap.enable = true;
+      lualine = {
+        enable = true;
+        globalstatus = true;
+        sections = {
+          lualine_a = [ "mode" ];
+          lualine_b = [ "branch" ];
+          lualine_c = [ "filename" "diff" ];
+        };
+      };
+      # lightline = {
+      # enable = true;
+      # settings = {
+      #   colorscheme = "catppuccin";
+      # };
+      # };
+      fugitive.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+          yamlls.enable = true;
+          jsonls.enable = true;
+          nil-ls.enable = true;
+          taplo.enable = true;
+          tsserver.enable = true;
+          ruff.enable = true;
+          helm-ls.enable = true;
+          dockerls.enable = true;
+          ansiblels.enable = true;
+          terraformls.enable = true;
+          html.enable = true;
+        };
+      };
       indent-o-matic.enable = true;
+      gitblame.enable = true;
+      gitgutter.enable = true;
+      gitlinker.enable = true;
+      comment.enable = true;
+      dashboard.enable = true;
+      git-conflict.enable = true;
+      flash.enable = true;
+      treesitter.enable = true;
+      schemastore = {
+        enable = true;
+        yaml.enable = true;
+        json.enable = true;
+      };
     };
 
     keymaps = [

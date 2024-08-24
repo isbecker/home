@@ -3,6 +3,7 @@
   services.gpg-agent = {
     enable = true;
     enableFishIntegration = true;
+    enableNushellIntegration = true;
     enableSshSupport = true;
 
     pinentryPackage = pkgs.pinentry-rofi;

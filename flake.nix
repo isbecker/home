@@ -45,7 +45,6 @@
           nixGLBinPath = "${nixGLPlatform}/bin";
           nixGLBinName = builtins.head (builtins.attrNames (builtins.readDir nixGLBinPath));
           nixGLPrefix = "${nixGLBinPath}/${nixGLBinName}";
-
         in
         {
           legacyPackages.homeConfigurations.${myUserName} =

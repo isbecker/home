@@ -6,7 +6,9 @@
     ./fish.nix
     ./git.nix
     ./gpg-agent.nix
+    ./jujutsu.nix
     ./kitty.nix
+    ./nushell.nix
     ./starship.nix
     ./tmux.nix
   ];
@@ -23,6 +25,7 @@
     fzf = {
       enable = true;
       enableFishIntegration = true;
+      # enableNushellIntegration = true;
       tmux.enableShellIntegration = true;
     };
     direnv = {
@@ -35,11 +38,13 @@
     thefuck = {
       enable = true;
       enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
 
     dircolors = {
       enable = true;
       enableFishIntegration = true;
+      # enableNushellIntegration = true;
     };
   };
 
