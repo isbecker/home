@@ -47,6 +47,7 @@ in
     vault
 
     kubectl
+    kustomize
     kind
     k3d
     crossplane-cli
