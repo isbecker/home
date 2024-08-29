@@ -62,6 +62,32 @@
           end
         '';
       };
+      vault_login = {
+        body = ''
+          set -gx VAULT_ADDR "https://vault.infra.$VAULT_ENV.gov.he2pi.com/"
+          set -gx VAULT_TOKEN (vault login -format=json -method=oidc -path=$VAULT_PATH role=$VAULT_ROLE | jq -r '.auth.client_token')
+        '';
+      };
+      vault_config = {
+        body = ''
+          argparse 'h/help' 'e/env=' 'r/role=' 'p/path=' -- $argv
+          or return
+
+          if set -ql _flag_help
+            echo "vault_config [-e|--env] [-r|--role] [-p|--path]"
+          end
+          
+          if set -ql _flag_env
+            set -gx VAULT_ENV $_flag_env
+          end
+          if set -ql _flag_role
+            set -gx VAULT_ROLE $_flag_role
+          end
+          if set -ql _flag_path
+            set -gx VAULT_PATH $_flag_path
+          end
+        '';
+      };
     };
   };
 
