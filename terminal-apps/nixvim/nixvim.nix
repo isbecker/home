@@ -25,6 +25,7 @@
       };
     };
     clipboard = {
+      register = "unnamedplus";
       providers.xsel.enable = true;
     };
 
