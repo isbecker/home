@@ -20,6 +20,8 @@ in
 
     # systemd services; eg: flameshot, barrier, etc
     ./services
+
+    ./files
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -42,8 +44,9 @@ in
     JIRA_API_TOKEN = "$(${pkgs.pass}/bin/pass show dev/jira/tokens/pat)";
     JIRA_AUTH_TYPE = "bearer";
 
-    VAULT_ADDR = "https://vault.infra.prod.gov.he2pi.com/";
-    VAULT_TOKEN = "s.osWPnr7BGrWek69xtd0M45Yb";
+    VAULT_ENV = "dev";
+    VAULT_PATH = "/infra-dev";
+    VAULT_ROLE = "gov-dev-int-infra";
 
     # MONITOR = "DP-2";
   };
