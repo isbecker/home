@@ -7,6 +7,7 @@
     ./git.nix
     ./gpg-agent.nix
     ./jujutsu.nix
+    ./k8s-utils.nix
     ./kitty.nix
     ./nushell.nix
     ./starship.nix
@@ -54,7 +55,5 @@
     brightnessctl
 
     nurl # possibly we may start a nix-tools file if we end up with more
-
-    cue
   ];
 }
