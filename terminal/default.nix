@@ -54,5 +54,7 @@
     brightnessctl
 
     nurl # possibly we may start a nix-tools file if we end up with more
+
+    cue
   ];
 }
