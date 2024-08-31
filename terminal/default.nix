@@ -7,7 +7,6 @@
     ./git.nix
     ./gpg-agent.nix
     ./jujutsu.nix
-    ./k8s-utils.nix
     ./kitty.nix
     ./nushell.nix
     ./starship.nix
@@ -18,8 +17,6 @@
     asl = "aws_sso_login";
     uac = "update_aws_config";
     uek = "update_eks_kubeconfig";
-
-    docker = "podman";
   };
 
   programs = {

@@ -41,17 +41,6 @@ in
     gitlabCli # the fetchTarball above is from the latest release
     jira-cli-go
 
-    podman
-    podman-compose
-
     vault
-
-    kubectl
-    kustomize
-    kind
-    k3d
-    crossplane-cli
-    argocd
-    kubernetes-helm
   ];
 }

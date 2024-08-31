@@ -1,8 +1,4 @@
-{ flake, pkgs, ... }:
-let
-
-
-in
+{ flake, pkgs, config, ... }:
 {
   imports = [
 
@@ -22,6 +18,10 @@ in
     ./services
 
     ./files
+
+    ./containers
+
+    ./k8s
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -85,7 +85,9 @@ in
     executable = true;
   };
 
+
   xdg = {
+    enable = true;
     portal = {
       enable = true;
       configPackages = [ pkgs.gnome.gnome-session ];
