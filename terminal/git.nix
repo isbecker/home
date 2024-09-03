@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, config, ... }:
 {
   programs.git = {
     enable = true;
@@ -20,5 +20,16 @@
         username = "ian.becker";
       };
     };
+    includes = [
+      {
+        contents = {
+          user = {
+            email = "ian@beckr.dev";
+            name = "Ian Becker";
+          };
+        };
+        condition = "gitdir:${config.home.homeDirectory}/play/**";
+      }
+    ];
   };
 }

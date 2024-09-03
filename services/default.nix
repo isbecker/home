@@ -4,5 +4,6 @@
     ./activity-watch.nix
     ./barrier.nix
     ./flameshot.nix
+    # ./podman.nix
   ];
 }
