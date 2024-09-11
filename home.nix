@@ -22,6 +22,8 @@
     ./containers
 
     ./k8s
+
+    ./go
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -66,8 +68,6 @@
     # Nix dev
     cachix
 
-    go
-
     (nerdfonts.override { fonts = [ "Hack" "Iosevka" "IosevkaTerm" "IosevkaTermSlab" ]; })
   ];
 
@@ -90,7 +90,7 @@
     enable = true;
     portal = {
       enable = true;
-      configPackages = [ pkgs.gnome.gnome-session ];
+      configPackages = [ pkgs.gnome-session ];
       extraPortals = [ pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal-gtk ];
       config = {
         common = {
