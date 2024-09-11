@@ -1,16 +1,19 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./vcluster.nix
+  ];
   home.packages = with pkgs; [
     kubectl
     kustomize
+    kubernetes-helm
+
     crossplane-cli
     argocd
-    kubernetes-helm
-    cue
     kyverno-chainsaw
+
+    cue
+
     kind
-    # k3d
   ];
-
-
 }

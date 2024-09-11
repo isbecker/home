@@ -16,21 +16,26 @@
   };
 
   home.file."${config.xdg.configHome}/containers/registries.conf" = {
-    text = ''
-      unqualified-search-registries=["docker.io"]
-    '';
+    source = (pkgs.formats.toml { }).generate "registries-conf" {
+      unqualified-search-registries = [
+        "docker.io"
+      ];
+      registry = [
+        {
+          location = "docker.infra.prod.gov.he2pi.com";
+        }
+      ];
+    };
   };
   home.file."${config.xdg.configHome}/containers/policy.json" =
     {
-      text = ''
-        {
-          "default": [
-            {
-              "type": "insecureAcceptAnything"
-            }
-          ]
-        }
-      '';
+      source = (pkgs.formats.json { }).generate "policy-json" {
+        default = [
+          {
+            type = "insecureAcceptAnything";
+          }
+        ];
+      };
     };
 
   # systemd.user.services = {

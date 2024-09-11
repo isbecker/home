@@ -8,6 +8,7 @@
       init.defaultBranch = "main";
       user.signingKey = "6173020131013ADB";
       commit.gpgsign = true;
+      rerere.enabled = true;
       url = {
         "ssh://git@cm.infra.he2pi.com" = {
           insteadOf = "https://cm.infra.he2pi.com";

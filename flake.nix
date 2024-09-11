@@ -1,8 +1,8 @@
 {
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/5d5367eb9d9cbae4b22d375a5f9b378a030e64fd";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/5d5367eb9d9cbae4b22d375a5f9b378a030e64fd";
     #"/92888c12688792ca9c6f67eb8e6d33fa1753bfdd"; # awscli2 build fail, switch back to nixos-unstable when fixed
     home-manager = {
       url = "github:nix-community/home-manager";

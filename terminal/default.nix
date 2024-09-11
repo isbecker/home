@@ -17,6 +17,7 @@
     asl = "aws_sso_login";
     uac = "update_aws_config";
     uek = "update_eks_kubeconfig";
+    tf = "terraform";
   };
 
   programs = {

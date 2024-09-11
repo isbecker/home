@@ -1,7 +1,4 @@
 { flake, pkgs, config, ... }:
-let
-  vscode_extensions = flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
-in
 {
   programs.vscode = {
     enable = true;
@@ -13,6 +10,7 @@ in
         formatOnSave = true;
         defaultFormatter = "ibecker.treefmt-vscode";
         fontFamily = "'Iosevka Nerd Font Mono', 'monospace', monospace";
+        fontLigatures = true;
       };
       workbench = {
         colorTheme = "Catppuccin Macchiato";
@@ -26,6 +24,11 @@ in
       catppuccin = {
         accentColor = "lavender";
         extraBordersEnabled = true;
+      };
+      nix = {
+        enableLanguageServer = true;
+        serverPath = "${pkgs.nil}/bin/nil";
+        formatterPath = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
       };
       direnv = {
         path.executable = "${config.home.profileDirectory}/bin/direnv";
@@ -54,21 +57,25 @@ in
     };
     mutableExtensionsDir = false;
 
-    extensions = with vscode_extensions; [
-      bbenoist.nix
-      jnoortheen.nix-ide
-      mkhl.direnv
-      ms-python.python
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
-      tamasfe.even-better-toml
-      # ms-azuretools.vscode-docker # not helpful if we're using podman
-      ibecker.treefmt-vscode
+    extensions = with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
+      with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace-release; [
+        bbenoist.nix
+        jnoortheen.nix-ide
+        mkhl.direnv
+        ms-python.python
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
+        # ms-azuretools.vscode-docker # not helpful if we're using podman
+        ibecker.treefmt-vscode
 
-      gitlab.gitlab-workflow
+        hashicorp.terraform
+        redhat.vscode-yaml
+        tamasfe.even-better-toml
 
-      mhutchie.git-graph
-      eamodio.gitlens
-    ];
+        gitlab.gitlab-workflow
+
+        mhutchie.git-graph
+        eamodio.gitlens
+      ];
   };
 }
