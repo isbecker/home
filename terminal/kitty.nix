@@ -8,7 +8,7 @@
       name = "IosevkaTerm Nerd Font Mono";
       size = 12;
     };
-    theme = "Catppuccin-Macchiato";
+    themeFile = "Catppuccin-Macchiato";
     settings = {
       allow_remote_control = "yes";
     };

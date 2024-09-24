@@ -27,6 +27,7 @@
           user = {
             email = "ian@beckr.dev";
             name = "Ian Becker";
+            signingKey = "82335051956D74C9";
           };
         };
         condition = "gitdir:${config.home.homeDirectory}/play/**";

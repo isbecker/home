@@ -75,14 +75,12 @@
           set -g @catppuccin_window_current_fill "number"
           set -g @catppuccin_window_current_text "#W"
 
-          set -g @catppuccin_status_modules_right "directory date_time session"
+          set -g @catppuccin_status_modules_right "date_time session"
           set -g @catppuccin_status_left_separator  " "
           set -g @catppuccin_status_right_separator ""
           set -g @catppuccin_status_right_separator_inverse "no"
           set -g @catppuccin_status_fill "icon"
           set -g @catppuccin_status_connect_separator "no"
-
-          set -g @catppuccin_directory_text "#{pane_current_path}"
 
           set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
         '';

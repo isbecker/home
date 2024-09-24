@@ -7,11 +7,11 @@
   ];
 
   home.sessionVariables = {
-    # DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
+    DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
     # DOCKER_SOCK = "unix:/$XDG_RUNTIME_DIR/podman/podman.sock";
   };
 
-  home.sessionVariables = {
+  home.shellAliases = {
     docker = "podman";
   };
 

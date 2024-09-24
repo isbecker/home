@@ -1,8 +1,7 @@
-{ flake, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
-  ac = "#1E88E5";
-  mf = "#383838";
+  bar_name = "bottom";
 
   bg = "\${colors.base}";
   fg = "\${colors.surface0}";
@@ -22,7 +21,7 @@ let
   tertiary = "\${colors.green}";
 
   # white
-  quaternary = "\${colors.rosewater}";
+  # quaternary = "\${colors.rosewater}";
 
   # middle gray
   quinternary = "\${colors.lavender}";
@@ -39,7 +38,7 @@ in
       pulseSupport = true;
     };
     config = {
-      "bar/bottom" = {
+      "bar/${bar_name}" = {
         font-0 = "Iosevka Nerd Font:size=13;2";
         background = bg;
         foreground = fg;
@@ -49,7 +48,7 @@ in
         monitor = "\${env:MONITOR:eDP-1}";
 
         width = "100%";
-        height = "3%";
+        height = "3.5%";
 
         bottom = "true";
         radius = 0;
@@ -58,17 +57,17 @@ in
         modules-right = "wireless-network cpu audio battery tray";
         modules-center = "date";
       };
-      "bar/bottom2" = {
+      "bar/${bar_name}-2" = {
         font-0 = "Iosevka Nerd Font:size=13;2";
         background = bg;
         foreground = fg;
         border-color = "\${colors.crust}";
         border-size = "4pt";
 
-        monitor = "\${env:MONITOR:DP-2}";
+        monitor = "\${env:MONITOR:eDP-1}";
 
         width = "100%";
-        height = "3%";
+        height = "3.5%";
 
         bottom = "true";
         radius = 0;
@@ -83,30 +82,29 @@ in
         pin-workspaces = "true";
         enable-click = "true";
 
-        format = "<label-state> <label-mode>";
-        format-background = "\${colors.mauve}";
+        # format = "<label-state> <label-mode>";
+        # format-background = "\${colors.mauve}";
 
-
-        label-mode = "%mode%";
+        # label-mode = "%mode%";
         label-mode-padding = 1;
 
-        label-unfocused = "%index%";
+        # label-unfocused = "%index%";
         label-unfocused-foreground = subtext;
         label-unfocused-padding = 1;
 
-        label-focused = "%index%";
+        # label-focused = "%index%";
         label-focused-font = 2;
-        label-focused-foreground = surface;
+        label-focused-foreground = primary;
         label-focused-padding = 1;
 
-        label-visible = "%icon%";
+        # label-visible = "%index%";
         label-visible-padding = 1;
 
-        label-urgent = "%index%";
+        # label-urgent = "%index%";
         label-urgent-foreground = urgency;
         label-urgent-padding = 1;
 
-        label-separator = "";
+        # label-separator = "";
       };
 
       "module/title" = {
@@ -133,7 +131,7 @@ in
       "module/audio" = {
         type = "internal/pulseaudio";
 
-        format-volume = "墳 VOL <label-volume>";
+        format-volume = "VOL <label-volume>";
         format-volume-padding = 1;
         format-volume-foreground = secondary;
         format-volume-background = tertiary;
@@ -143,7 +141,7 @@ in
         format-muted-padding = 1;
         format-muted-foreground = secondary;
         format-muted-background = tertiary;
-        format-muted-prefix = "婢 ";
+        format-muted-prefix = "M";
         format-muted-prefix-foreground = urgency;
         format-muted-overline = bg;
 
@@ -173,12 +171,12 @@ in
         label-full = " 100%";
         format-full-padding = 1;
         format-full-foreground = secondary;
-        format-full-background = primary;
+        format-full-background = quinternary;
 
         format-charging = " <animation-charging> <label-charging>";
         format-charging-padding = 1;
         format-charging-foreground = secondary;
-        format-charging-background = primary;
+        format-charging-background = quinternary;
         label-charging = "%percentage%% +%consumption%W";
         animation-charging-0 = "";
         animation-charging-1 = "";
@@ -236,31 +234,16 @@ in
 
         label = "CPU %percentage%%";
       };
-      "module/powermenu" = {
-        type = "custom/menu";
-        expand-right = true;
-
-
-        format = "<label-toggle> <menu>";
-        format-background = secondary;
-        format-padding = 1;
-
-        label-open = " ";
-        label-close = " ";
-        label-separator = "  ";
-
-        menu-0-0 = " Suspend";
-        menu-0-0-exec = "systemctl suspend";
-        menu-0-1 = " Reboot";
-        menu-0-1-exec = "v";
-        menu-0-2 = " Shutdown";
-        menu-0-2-exec = "systemctl poweroff";
-      };
     };
     script = ''
-      polybar bottom &
-      polybar bottom2 &
+      MONITOR=eDP-1 polybar --reload ${bar_name} &
+      MONITOR=HDMI-1 polybar --reload ${bar_name}-2 &
     '';
+    # script = ''
+    #   for m in ${config.}polybar --list-monitors | ${pkgs.toybox}/bin/cut -d":" -f1); do
+    #       MONITOR=$m polybar --reload ${bar_name} &
+    #   done
+    # '';
   };
 
 }
