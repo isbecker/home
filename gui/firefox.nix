@@ -69,6 +69,7 @@
           aw-watcher-web
           localcdn
           tab-stash
+          enhancer-for-youtube
         ];
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # for userChrome to work

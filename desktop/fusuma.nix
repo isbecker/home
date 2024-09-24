@@ -14,10 +14,10 @@
       swipe = {
         "3" = {
           left = {
-            command = "${pkgs.i3}/bin/i3-msg 'workspace next'";
+            command = "${pkgs.i3}/bin/i3-msg 'workspace next_on_output'";
           };
           right = {
-            command = "${pkgs.i3}/bin/i3-msg 'workspace prev'";
+            command = "${pkgs.i3}/bin/i3-msg 'workspace prev_on_output'";
           };
         };
         "4" = {

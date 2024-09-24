@@ -20,6 +20,9 @@
       diffEditor.ignoreTrimWhitespace = false;
       git = {
         confirmSync = false;
+        autofetch = true;
+        autofetchPeriod = 180;
+        rememberPostCommitCommand = true;
       };
       catppuccin = {
         accentColor = "lavender";
@@ -59,23 +62,34 @@
 
     extensions = with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
       with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace-release; [
+
+        # asvetliakov.vscode-neovim
+        activitywatch.aw-watcher-vscode
+
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
+
+        bierner.github-markdown-preview
+
+        ibecker.treefmt-vscode
         bbenoist.nix
         jnoortheen.nix-ide
         mkhl.direnv
         ms-python.python
-        catppuccin.catppuccin-vsc
-        catppuccin.catppuccin-vsc-icons
-        # ms-azuretools.vscode-docker # not helpful if we're using podman
-        ibecker.treefmt-vscode
-
         hashicorp.terraform
         redhat.vscode-yaml
         tamasfe.even-better-toml
 
         gitlab.gitlab-workflow
-
         mhutchie.git-graph
         eamodio.gitlens
+
+        foam.foam-vscode
+
+        tim-koehler.helm-intellisense
+
+        upboundio.upbound
+        kcl.kcl-vscode-extension
       ];
   };
 }

@@ -1,6 +1,7 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
+    ./aliases.nix
     ./carapace.nix
     ./eza.nix
     ./fish.nix
@@ -12,13 +13,6 @@
     ./starship.nix
     ./tmux.nix
   ];
-
-  home.shellAliases = {
-    asl = "aws_sso_login";
-    uac = "update_aws_config";
-    uek = "update_eks_kubeconfig";
-    tf = "terraform";
-  };
 
   programs = {
     fzf = {

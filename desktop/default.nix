@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./dunst.nix
@@ -13,5 +13,7 @@
 
   home.packages = with pkgs; [
     i3lock-color
+    autorandr
+    pavucontrol
   ];
 }

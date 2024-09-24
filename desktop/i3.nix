@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   xsession.windowManager.i3 = {
     enable = true;
@@ -15,6 +15,47 @@
       gaps = {
         inner = 10;
         outer = 5;
+        # smartBorders = "on";
+        # smartGaps = "on";
+      };
+      menu = "rofi -show combi";
+      workspaceAutoBackAndForth = true;
+      floating = {
+        criteria = [
+          {
+            title = "Volume Control";
+          }
+          {
+            class = "Pavucontrol";
+          }
+        ];
+      };
+      assigns = {
+        "1: mail" = [
+          {
+            class = "^Firefox$";
+            title = "^Mail.* - Outlook";
+            # output = "primary";
+          }
+        ];
+        "2: web" = [
+          { class = "^Firefox$"; }
+        ];
+        "3: term" = [
+          { class = "^kitty$"; }
+        ];
+        "4: slack" = [
+          {
+            class = "^Slack$";
+            # output = "primary";
+          }
+        ];
+        "8: zoom" = [
+          {
+            class = "^zoom$";
+            # output = "primary";
+          }
+        ];
       };
       keybindings = lib.mkOptionDefault {
         "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
@@ -26,6 +67,11 @@
 
         "${modifier}+Return" = "exec kitty";
         "${modifier}+space" = "exec rofi -show combi";
+        "${modifier}+Ctrl+space" = "exec ${config.xdg.configHome}/gigarandr/gigarandr.py";
+        "${modifier}+Ctrl+Shift+space" = "move workspace to output next";
+        "${modifier}+Ctrl+Shift+Mod1+space" = "workspace back_and_forth";
+
+        "${modifier}+Ctrl+Shift+Mod1+space+p" = "exec i3-resurrect save -w1";
 
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
@@ -37,41 +83,6 @@
       startup = [
         {
           command = "feh --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.jpg";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart polybar.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart picom.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart barrierc.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart fusuma.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart activitywatch-watcher-aw-watcher-afk.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart activitywatch-watcher-aw-watcher-window.service";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "systemctl --user restart dunst.service";
           always = true;
           notification = false;
         }

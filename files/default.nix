@@ -1,5 +1,5 @@
-{ flake, pkgs, config, ... }:
 {
   imports = [
+    ./gigarandr.nix
   ];
 }
