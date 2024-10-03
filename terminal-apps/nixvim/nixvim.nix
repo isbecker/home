@@ -62,7 +62,7 @@
           jsonls.enable = true;
           nil-ls.enable = true;
           taplo.enable = true;
-          tsserver.enable = true;
+          # ts_ls.enable = true;
           ruff.enable = true;
           helm-ls.enable = true;
           dockerls.enable = true;
