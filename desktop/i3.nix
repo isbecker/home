@@ -70,6 +70,7 @@
         "${modifier}+Ctrl+space" = "exec ${config.xdg.configHome}/gigarandr/gigarandr.py";
         "${modifier}+Ctrl+Shift+space" = "move workspace to output next";
         "${modifier}+Ctrl+Shift+Mod1+space" = "workspace back_and_forth";
+        "${modifier}+Tab" = "workspace back_and_forth";
 
         "${modifier}+Ctrl+Shift+Mod1+space+p" = "exec i3-resurrect save -w1";
 
