@@ -241,8 +241,8 @@ in
 
       ${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected"
 
-      primary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg -v primary | ${pkgs.toybox}/bin/cut -d" " -f1)
-      secondary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg primary | ${pkgs.toybox}/bin/cut -d" " -f1)
+      primary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg primary | ${pkgs.toybox}/bin/cut -d" " -f1)
+      secondary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg -v primary | ${pkgs.toybox}/bin/cut -d" " -f1)
       
       echo "Primary: $primary"
       ${pkgs.toybox}/bin/env MONITOR=$primary polybar --reload ${bar_name} &
