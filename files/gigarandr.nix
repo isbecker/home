@@ -10,7 +10,6 @@
               {
                 name = "laptop";
                 primary = true;
-                position = "below largest";
               }
               {
                 name = "largest";

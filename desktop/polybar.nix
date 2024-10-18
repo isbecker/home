@@ -64,7 +64,7 @@ in
         border-color = "\${colors.crust}";
         border-size = "4pt";
 
-        monitor = "\${env:MONITOR:eDP-1}";
+        monitor = "\${env:MONITOR:DP-2}";
 
         width = "100%";
         height = "3.5%";
@@ -236,14 +236,22 @@ in
       };
     };
     script = ''
-      MONITOR=eDP-1 polybar --reload ${bar_name} &
-      MONITOR=HDMI-1 polybar --reload ${bar_name}-2 &
+      set -x
+      /usr/bin/systemctl --user import-environment DISPLAY XAUTHORITY
+
+      ${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected"
+
+      primary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg primary | ${pkgs.toybox}/bin/cut -d" " -f1)
+      secondary=$(${pkgs.xorg.xrandr}/bin/xrandr --screen 0 --query | ${pkgs.ripgrep}/bin/rg " connected" | ${pkgs.ripgrep}/bin/rg -v primary | ${pkgs.toybox}/bin/cut -d" " -f1)
+      
+      echo "Primary: $primary"
+      ${pkgs.toybox}/bin/env MONITOR=$primary polybar --reload ${bar_name} &
+
+      if [ -n "$secondary" ]; then
+        echo "Secondary: $secondary"
+        ${pkgs.toybox}/bin/env MONITOR=$secondary polybar --reload ${bar_name}-2 &
+      fi
     '';
-    # script = ''
-    #   for m in ${config.}polybar --list-monitors | ${pkgs.toybox}/bin/cut -d":" -f1); do
-    #       MONITOR=$m polybar --reload ${bar_name} &
-    #   done
-    # '';
   };
 
 }
