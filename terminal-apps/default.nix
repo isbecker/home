@@ -10,6 +10,7 @@
     ./joshuto.nix
     ./jq.nix
     ./k9s.nix
+    ./pass.nix
     ./ranger.nix
   ];
 
@@ -18,7 +19,6 @@
     # work.
     less
 
-    pass
     pass-git-helper
 
     gpg-tui
@@ -26,5 +26,7 @@
     jira-cli-go
 
     vault
+
+    ollama
   ];
 }
