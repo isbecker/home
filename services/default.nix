@@ -6,4 +6,6 @@
     ./flameshot.nix
     # ./podman.nix
   ];
+
+  services.copyq.enable = true;
 }
