@@ -2,6 +2,7 @@
 {
   programs.vscode = {
     enable = true;
+    package = (config.lib.nixGL.wrappers.nvidiaPrime pkgs.vscode);
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     userSettings = {

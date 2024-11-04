@@ -1,7 +1,8 @@
-{ flake, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.kitty = {
     enable = true;
+    package = (config.lib.nixGL.wrappers.mesa pkgs.kitty);
     shellIntegration.enableFishIntegration = true;
     # shellIntegration.enableNushellIntegration = true;
     font = {

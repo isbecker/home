@@ -19,8 +19,8 @@
       url = "github:nix-community/NUR";
     };
 
-    nixGL = {
-      url = "github:nix-community/nixGL/def00794f963f51ccdcf19a512006bd7f9c78970";
+    nixgl = {
+      url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -59,10 +59,6 @@
       perSystem = { pkgs, ... }:
         let
           myUserName = "ibecker";
-          nixGLPlatform = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
-          nixGLBinPath = "${nixGLPlatform}/bin";
-          nixGLBinName = builtins.head (builtins.attrNames (builtins.readDir nixGLBinPath));
-          nixGLPrefix = "${nixGLBinPath}/${nixGLBinName}";
         in
         {
           legacyPackages.homeConfigurations.${myUserName} =
@@ -75,18 +71,12 @@
                   inputs.nur.hmModules.nur
                   inputs.nixvim.homeManagerModules.nixvim
                   # inputs.nix-snapshotter.homeModules.default
-                  (builtins.fetchurl {
-                    url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-                    sha256 = "f14874544414b9f6b068cfb8c19d2054825b8531f827ec292c2b0ecc5376b305";
-                  })
                 ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "24.11";
 
                 systemd.user.startServices = "sd-switch";
-
-                nixGL.prefix = nixGLPrefix;
               });
 
           devenv.shells.default = {
@@ -119,20 +109,10 @@
               flavor = "macchiato";
             };
 
-            home.packages = with pkgs; [
-              (config.lib.nixGL.wrap kooha)
-            ];
-
-            programs = {
-              kitty = {
-                package = (config.lib.nixGL.wrap pkgs.kitty);
-              };
-              firefox = {
-                package = (config.lib.nixGL.wrap pkgs.firefox);
-              };
-              vscode = {
-                package = (config.lib.nixGL.wrap pkgs.vscode);
-              };
+            nixGL = {
+              packages = inputs.nixgl.packages;
+              defaultWrapper = "intel";
+              offloadWrapper = "nvidiaPrime";
             };
           };
       };

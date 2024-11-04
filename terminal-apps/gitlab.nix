@@ -5,7 +5,7 @@ let
     version = "1.48.0";
     src = builtins.fetchTarball {
       url = "https://gitlab.com/gitlab-org/cli/-/releases/v${version}/downloads/glab_${version}_linux_amd64.tar.gz";
-      sha256 = "1q2k87xf8swgmj7gskhvmjs8ifb2pwlv7v0ymc3zhckil7brj9zx";
+      sha256 = "19sv6msgg1pkii8zdql9hfn7281qijyr2a1jz393gw94af0f7r6j";
     };
     installPhase = ''
       mkdir -p $out/bin

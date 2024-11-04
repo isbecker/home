@@ -1,4 +1,4 @@
-{ flake, pkgs, config, ... }:
+{ pkgs, config, ... }:
 {
   programs.browserpass = {
     enable = true;
@@ -8,6 +8,7 @@
   };
   programs.firefox = {
     enable = true;
+    package = (config.lib.nixGL.wrappers.nvidiaPrime pkgs.firefox);
 
     profiles = {
       default = {

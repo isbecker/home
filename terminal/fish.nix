@@ -10,7 +10,7 @@
     interactiveShellInit = ''
       fzf_configure_bindings --directory=\cf
       jira completion fish | source
-      chainsaw completion fish | source
+      # chainsaw completion fish | source
     '';
 
     plugins = [

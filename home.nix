@@ -1,4 +1,4 @@
-{ flake, pkgs, config, ... }:
+{ flake, pkgs, config, nixgl, ... }:
 {
   imports = [
 
@@ -76,7 +76,6 @@
   programs = {
     home-manager.enable = true;
   };
-
   home.file.".xsession" = {
     text = ''
       #!${pkgs.bash}/bin/bash
