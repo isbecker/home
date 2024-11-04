@@ -10,7 +10,7 @@
 
     crossplane-cli
     argocd
-    kyverno-chainsaw
+    # kyverno-chainsaw
 
     cue
 

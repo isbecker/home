@@ -7,5 +7,10 @@
         pp = "v1/pods";
       };
     };
+    settings = {
+      k9s = {
+        liveViewAutoRefresh = true;
+      };
+    };
   };
 }
