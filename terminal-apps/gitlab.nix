@@ -2,10 +2,10 @@
 let
   gitlabCli = pkgs.stdenv.mkDerivation rec {
     pname = "gitlab-cli";
-    version = "1.48.0";
+    version = "1.49.0";
     src = builtins.fetchTarball {
       url = "https://gitlab.com/gitlab-org/cli/-/releases/v${version}/downloads/glab_${version}_linux_amd64.tar.gz";
-      sha256 = "19sv6msgg1pkii8zdql9hfn7281qijyr2a1jz393gw94af0f7r6j";
+      sha256 = "08rwzvavlqkj2bik64xfl9q9wp5n8q8pd0szwp6wz09xvr6nincg";
     };
     installPhase = ''
       mkdir -p $out/bin
