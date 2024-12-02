@@ -47,10 +47,16 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
   };
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+    experimental-features = "nix-command flakes impure-derivations";
+  };
 
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+
       imports = [
         inputs.nixos-unified.flakeModule
         inputs.devenv.flakeModule
@@ -81,6 +87,21 @@
 
           devenv.shells.default = {
             name = "home";
+            enterShell = ''
+              echo "                  __- -                       ";
+              echo "                 (                            ";
+              echo "                _))_                          ";
+              echo "                |  |________                  ";
+              echo "       .------------   |    -----------.      ";
+              echo "      /.^.\  Welcome   |            /.^.\     ";
+              echo "     /.   .\           |  Home     /.   .\    ";
+              echo "    /.     .\          |          /.     .\   ";
+              echo "   /.  ___ '.|__....---T---....__|.' ___  .\  ";
+              echo "  |   |_|_|  |   _..   |   .-.   |  |_|_|  |  ";
+              echo "  |   |_|_|  |  |  |   |   |_|   |  |_|_|  |  ";
+              echo "  |__________|__|..+-------....__|_________|  ";
+            '';
+
             pre-commit.hooks = {
               treefmt = {
                 package = pkgs.treefmt2;
@@ -111,7 +132,7 @@
 
             nixGL = {
               packages = inputs.nixgl.packages;
-              defaultWrapper = "intel";
+              defaultWrapper = "mesa";
               offloadWrapper = "nvidiaPrime";
             };
           };

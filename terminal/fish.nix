@@ -52,14 +52,29 @@
       };
       update_eks_kubeconfig = {
         body = ''
-          # Query AWS to get the cluster name for the profile
-          set cluster_name (aws eks list-clusters --profile $AWS_PROFILE --query "clusters[0]" --output text)
+          # Check if env vars are set and default if not
+          if test -n "$AWS_PROFILE"
+            set aws_profile "$AWS_PROFILE"
+          else
+            set aws_profile (basename (dirname (pwd)))
+          end
+          if test -n "$KUBECONFIG"
+            set kubeconfig "$KUBECONFIG"
+          else
+            set kubeconfig ".kubeconfig"
+          end
+          if test -n "$CLUSTER_NAME"
+            set cluster_name $CLUSTER_NAME
+          else
+            # Query AWS to get the cluster name for the profile
+            set cluster_name (aws eks list-clusters --profile $aws_profile --query "clusters[0]" --output text)
+          end
 
           # Check if cluster name is obtained
           if test -n "$cluster_name"
-            aws eks update-kubeconfig --name $cluster_name --profile $AWS_PROFILE --kubeconfig $KUBECONFIG
+            aws eks update-kubeconfig --name $cluster_name --profile $aws_profile --kubeconfig $kubeconfig
           else
-            echo "No EKS cluster found for profile $AWS_PROFILE"
+            echo "No EKS cluster found for profile $aws_profile, check your env vars"
           end
         '';
       };

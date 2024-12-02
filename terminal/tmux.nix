@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ config, pkgs, ... }:
 # let 
 #  aw-watcher-tmux = pkgs.tmuxPlugins.mkTmuxPlugin {
 #   pluginName = "aw-watcher-tmux";
@@ -27,14 +27,21 @@
       set-option -g set-titles-string '#T'
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#{b:pane_current_path}'
+
+      bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
     '';
     plugins = with pkgs; [
-      # aw-watcher-tmux
       {
         plugin = tmuxPlugins.yank;
       }
       {
         plugin = tmuxPlugins.tmux-fzf;
+      }
+      {
+        plugin = tmuxPlugins.cpu;
+      }
+      {
+        plugin = tmuxPlugins.battery;
       }
       {
         plugin = tmuxPlugins.pass;
@@ -63,26 +70,16 @@
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavour 'macchiato' # or frappe, macchiato, mocha, latte
-
-          set -g @catppuccin_window_left_separator ""
-          set -g @catppuccin_window_right_separator " "
-          set -g @catppuccin_window_middle_separator " █"
-          set -g @catppuccin_window_number_position "right"
-
-          set -g @catppuccin_window_default_fill "number"
-          set -g @catppuccin_window_default_text "#W"
-
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W"
-
-          set -g @catppuccin_status_modules_right "date_time session"
-          set -g @catppuccin_status_left_separator  " "
-          set -g @catppuccin_status_right_separator ""
-          set -g @catppuccin_status_right_separator_inverse "no"
-          set -g @catppuccin_status_fill "icon"
-          set -g @catppuccin_status_connect_separator "no"
-
-          set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
+          set -g @catppuccin_window_status_style "rounded"
+          # Make the status line pretty and add some modules
+          set -g status-right-length 100
+          set -g status-left-length 100
+          set -g status-left ""
+          set -g status-right "#{E:@catppuccin_status_application}"
+          set -agF status-right "#{E:@catppuccin_status_cpu}"
+          set -ag status-right "#{E:@catppuccin_status_session}"
+          set -ag status-right "#{E:@catppuccin_status_uptime}"
+          set -agF status-right "#{E:@catppuccin_status_battery}"
         '';
       }
     ];

@@ -2,7 +2,7 @@
 {
   programs.kitty = {
     enable = true;
-    package = (config.lib.nixGL.wrappers.mesa pkgs.kitty);
+    package = (config.lib.nixGL.wrap pkgs.kitty);
     shellIntegration.enableFishIntegration = true;
     # shellIntegration.enableNushellIntegration = true;
     font = {

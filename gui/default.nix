@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./firefox.nix
@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     qtpass
     slack
-    # zoom-us
-    seabird
+    # (config.lib.nixGL.wrappers.nvidiaPrime zoom-us)
   ];
 }
