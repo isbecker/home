@@ -6,6 +6,7 @@
     ./eza.nix
     ./fish.nix
     ./git.nix
+    ./ghostty.nix
     ./gpg-agent.nix
     ./jujutsu.nix
     ./kitty.nix
@@ -47,5 +48,9 @@
     brightnessctl
 
     nurl # possibly we may start a nix-tools file if we end up with more
+
+    bat
+
+    curl
   ];
 }

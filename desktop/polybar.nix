@@ -39,7 +39,7 @@ in
     };
     config = {
       "bar/${bar_name}" = {
-        font-0 = "Iosevka Nerd Font:size=13;2";
+        font-0 = "IosevkaTerm Nerd Font Mono,IosevkaTerm NFM:size=10;2";
         background = bg;
         foreground = fg;
         border-color = "\${colors.crust}";
@@ -58,7 +58,7 @@ in
         modules-center = "date";
       };
       "bar/${bar_name}-2" = {
-        font-0 = "Iosevka Nerd Font:size=13;2";
+        font-0 = "IosevkaTerm Nerd Font Mono,IosevkaTerm NFM:size=10;2";
         background = bg;
         foreground = fg;
         border-color = "\${colors.crust}";

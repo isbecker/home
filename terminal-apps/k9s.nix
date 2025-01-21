@@ -9,6 +9,11 @@
     settings = {
       k9s = {
         liveViewAutoRefresh = true;
+        ui = {
+          headless = true;
+          crumbsless = true;
+          reactive = true;
+        };
       };
     };
   };

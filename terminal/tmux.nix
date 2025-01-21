@@ -1,17 +1,20 @@
 { config, pkgs, ... }:
-# let 
-#  aw-watcher-tmux = pkgs.tmuxPlugins.mkTmuxPlugin {
-#   pluginName = "aw-watcher-tmux";
-#   version = "1.0";
-#   src = pkgs.fetchFromGitHub {
-#     owner = "akohlbecker";
-#     repo = "aw-watcher-tmux";
-#     rev = "efaa7610add52bd2b39cd98d0e8e082b1e126487";
-#     sha256 = "sha256-L6YLyEOmb+vdz6bJdB0m5gONPpBp2fV3i9PiLSNrZNM=";
-#   };
-#  };
-# in 
 {
+
+  catppuccin = {
+    tmux.extraConfig = ''
+      set -g @catppuccin_window_status_style "rounded"
+
+      # Make the status line pretty and add some modules
+      set -g status-right-length 100
+      set -g status-left-length 100
+      set -g status-left ""
+      set -g status-right "#{E:@catppuccin_status_application}"
+      set -agF status-right "#{E:@catppuccin_status_cpu}"
+      set -ag status-right "#{E:@catppuccin_status_session}"
+      set -agF status-right "#{E:@catppuccin_status_battery}"
+    '';
+  };
   programs.tmux = {
     enable = true;
     prefix = "C-a";
@@ -26,7 +29,6 @@
       set-option -g set-titles on
       set-option -g set-titles-string '#T'
       set-option -g automatic-rename on
-      set-option -g automatic-rename-format '#{b:pane_current_path}'
 
       bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
     '';
@@ -64,22 +66,6 @@
           set -g @continuum-restore 'on'
           set -g @continuum-boot 'on'
           set -g @continuum-save-interval '10'
-        '';
-      }
-      {
-        plugin = tmuxPlugins.catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_flavour 'macchiato' # or frappe, macchiato, mocha, latte
-          set -g @catppuccin_window_status_style "rounded"
-          # Make the status line pretty and add some modules
-          set -g status-right-length 100
-          set -g status-left-length 100
-          set -g status-left ""
-          set -g status-right "#{E:@catppuccin_status_application}"
-          set -agF status-right "#{E:@catppuccin_status_cpu}"
-          set -ag status-right "#{E:@catppuccin_status_session}"
-          set -ag status-right "#{E:@catppuccin_status_uptime}"
-          set -agF status-right "#{E:@catppuccin_status_battery}"
         '';
       }
     ];

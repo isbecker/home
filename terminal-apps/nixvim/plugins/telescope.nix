@@ -8,17 +8,6 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>f";
-        action = "???";
-        #    lua = true;
-        options = {
-          silent = true;
-          desc = "  Find";
-        };
-      }
-
-      {
-        mode = "n";
         key = "<leader>ff";
         action = "<cmd>lua require('telescope.builtin').find_files()<CR>";
         #    lua = true;

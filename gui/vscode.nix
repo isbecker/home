@@ -13,6 +13,12 @@
         fontFamily = "'Iosevka Nerd Font Mono', 'monospace', monospace";
         fontLigatures = true;
       };
+      terminal = {
+        integrated = {
+          fontFamily = "'IosevkaTerm Nerd Font Mono', 'monospace', monospace";
+          defaultProfile.linux = "tmux";
+        };
+      };
       workbench = {
         colorTheme = "Catppuccin Macchiato";
         iconTheme = "catppuccin-macchiato";

@@ -24,6 +24,15 @@
         };
       };
     };
+    globals = {
+      mapleader = ",";
+    };
+    extraConfigVim = ''
+      set autoread
+    '';
+    opts = {
+      number = true;
+    };
     clipboard = {
       register = "unnamedplus";
       providers.xsel.enable = true;
@@ -47,82 +56,6 @@
         };
       };
       barbar.enable = true;
-      flash = {
-        enable = true;
-        settings = {
-          labels = "asdfghjklqwertyuiopzxcvbnm";
-        };
-      };
-      # leap = {
-      #   enable = true;
-      #   labels = [
-      #     "s"
-      #     "f"
-      #     "n"
-      #     "j"
-      #     "k"
-      #     "l"
-      #     "h"
-      #     "o"
-      #     "d"
-      #     "w"
-      #     "e"
-      #     "m"
-      #     "b"
-      #     "u"
-      #     "y"
-      #     "v"
-      #     "r"
-      #     "g"
-      #     "t"
-      #     "c"
-      #     "x"
-      #     "/"
-      #     "z"
-      #     "S"
-      #     "F"
-      #     "N"
-      #     "J"
-      #     "K"
-      #     "L"
-      #     "H"
-      #     "O"
-      #     "D"
-      #     "W"
-      #     "E"
-      #     "M"
-      #     "B"
-      #     "U"
-      #     "Y"
-      #     "V"
-      #     "R"
-      #     "G"
-      #     "T"
-      #     "C"
-      #     "X"
-      #     "?"
-      #     "Z"
-      #   ];
-      #   safeLabels = [
-      #     "s"
-      #     "f"
-      #     "n"
-      #     "u"
-      #     "t"
-      #     "/"
-      #     "S"
-      #     "F"
-      #     "N"
-      #     "L"
-      #     "H"
-      #     "M"
-      #     "U"
-      #     "G"
-      #     "T"
-      #     "?"
-      #     "Z"
-      #   ];
-      # };
       lualine = {
         enable = true;
         settings = {
@@ -136,12 +69,6 @@
           };
         };
       };
-      # lightline = {
-      # enable = true;
-      # settings = {
-      #   colorscheme = "catppuccin";
-      # };
-      # };
       fugitive.enable = true;
       lsp = {
         enable = true;
@@ -180,36 +107,6 @@
         key = "<leader>e";
         action = "<cmd>Neotree toggle<cr>";
         options = { desc = "Open/Close Neotree"; };
-      }
-      {
-        mode = [ "n" "x" "o" ];
-        key = "s";
-        action = ''function() require("flash").jump() end'';
-        options = { desc = "Flash"; };
-      }
-      {
-        mode = [ "n" "o" "x" ];
-        key = "S";
-        action = ''function() require("flash").treesitter() end'';
-        options = { desc = "Flash Treesitter"; };
-      }
-      {
-        mode = [ "o" ];
-        key = "r";
-        action = ''function() require("flash").remote() end'';
-        options = { desc = "Remote Flash"; };
-      }
-      {
-        mode = [ "o" "x" ];
-        key = "R";
-        action = ''function() require("flash").treesitter_search() end'';
-        options = { desc = "Treesitter Search"; };
-      }
-      {
-        mode = [ "c" ];
-        key = "<c-s>";
-        action = ''function() require("flash").toggle() end'';
-        options = { desc = "Toggle Flash Search"; };
       }
     ];
   };
