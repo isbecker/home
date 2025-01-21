@@ -16,6 +16,9 @@
     plugins = [
       { name = "bass"; src = pkgs.fishPlugins.bass.src; }
       { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+      { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
+      { name = "z"; src = pkgs.fishPlugins.z.src; }
+      { name = "done"; src = pkgs.fishPlugins.done.src; }
       {
         # nix-prefetch-github --rev v10.2 PatrickF1 fzf.fish
         name = "fzf.fish";

@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.rofi = {
     package = pkgs.rofi.override {
@@ -9,25 +9,28 @@
       ];
     };
     enable = true;
-    catppuccin.enable = true;
-    # font = "Iosevka Nerd Font 14";
+    font = "Iosevka NFM 16";
 
     pass = {
       enable = true;
+      stores = [
+        "${config.xdg.dataHome}/password-store"
+      ];
     };
 
-    theme."*".font = "Iosevka Nerd Font 14";
+    # theme."*".font = "Iosevka NFM Regular 16";
 
     extraConfig = {
-      modi = "window,run,drun,emoji";
+      modi = "window,run,drun,emoji,combi";
       # combi-modi = "run,drun,window,emoji";
       cycle = true;
       case-sensitive = false;
       icon-theme = "Oranchelo";
       show-icons = true;
-      display-drun = " 󰣆  Apps ";
-      display-run = "   Run ";
-      display-window = "    Window ";
+      display-drun = "🖊 App";
+      display-run = "🚀 Run";
+      display-window = "🪟 Win";
+      display-emoji = "😀 Emo";
       sidebar-mode = true;
     };
   };

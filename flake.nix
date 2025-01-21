@@ -1,9 +1,9 @@
 {
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/5d5367eb9d9cbae4b22d375a5f9b378a030e64fd";
-    #"/92888c12688792ca9c6f67eb8e6d33fa1753bfdd"; # awscli2 build fail, switch back to nixos-unstable when fixed
+    nixpkgs.url = "github:nixos/nixpkgs/master";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/6fe896e3159c87084e322d68909a0f1d0f4b13ed";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +17,7 @@
 
     nur = {
       url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixgl = {
@@ -74,7 +75,7 @@
                 imports = [
                   self.homeModules.default
                   inputs.catppuccin.homeManagerModules.catppuccin
-                  inputs.nur.hmModules.nur
+                  inputs.nur.modules.homeManager.default
                   inputs.nixvim.homeManagerModules.nixvim
                   # inputs.nix-snapshotter.homeModules.default
                 ];
@@ -135,6 +136,9 @@
               defaultWrapper = "mesa";
               offloadWrapper = "nvidiaPrime";
             };
+            home.packages = with pkgs; [
+              python312Packages.setuptools
+            ];
           };
       };
     };

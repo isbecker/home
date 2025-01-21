@@ -32,7 +32,7 @@
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "i3";
-    TERMINAL = "kitty";
+    TERMINAL = "ghostty";
     EDITOR = "nvim";
     BROWSER = "firefox";
     PAGER = "${pkgs.moar}/bin/moar";
@@ -68,7 +68,10 @@
     # Nix dev
     cachix
 
-    (nerdfonts.override { fonts = [ "Hack" "Iosevka" "IosevkaTerm" "IosevkaTermSlab" ]; })
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    # nerd-fonts.zed-mono
   ];
 
   fonts.fontconfig.enable = true;
