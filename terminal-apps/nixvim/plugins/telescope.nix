@@ -20,7 +20,7 @@
       {
         mode = "n";
         key = "<leader>fg";
-        action = "<cmd>lua require('telescope.builtin').live_grep()<CR>";
+        action = "<cmd>lua require('telescope.builtin').live_grep({hidden=false})<CR>";
         #    lua = true;
         options = {
           silent = true;

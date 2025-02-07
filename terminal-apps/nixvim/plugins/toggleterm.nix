@@ -6,8 +6,8 @@
         direction = "float";
         float_opts = {
           border = "curved";
-          height = 60;
-          width = 300;
+          height = 40;
+          width = 260;
         };
         open_mapping = "[[<c->]]";
       };

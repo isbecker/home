@@ -14,28 +14,31 @@ in
           format_on_save = # Lua
             ''
               function(bufnr)
-                -- Disable "format_on_save lsp_fallback" for lanuages that don't
-                -- have a well standardized coding style. You can add additional
-                -- lanuages here or re-enable it for the disabled ones.
-                local disable_filetypes = { c = true, cpp = true }
-                return {
-                  timeout_ms = 500,
-                  lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype]
-                }
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                  return
+                end
+
+                return { timeout_ms = 500, bufnr = bufnr }
               end
             '';
-          # format_after_save = # Lua
-          #   ''
-          #     lsp_format = "fallback"
-          #   '';
-          log_level = "debug";
+          format_after_save = # Lua
+            ''
+              function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                  return
+                end
+
+                return { async = true, bufnr = bufnr }
+              end
+            '';
+          log_level = "info";
           notify_on_error = true;
           notify_no_formatters = true;
           formatters = {
             treefmt = {
               command = lib.getExe pkgs.treefmt2;
               stdin = true;
-              args = [ "--stdin" ];
+              args = [ "--stdin" "$FILENAME" ];
             };
           };
         };
@@ -44,18 +47,17 @@ in
     keymaps = [
       {
         mode = "";
-        key = "<leader>f";
+        key = "<leader>I";
         action.__raw = ''
           function()
             require('conform').format { async = true, lsp_fallback = true }
           end
         '';
         options = {
-          desc = "[F]ormat buffer";
+          desc = "[f]ormat buffer";
         };
       }
     ];
-
   };
 }
 

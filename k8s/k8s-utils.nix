@@ -7,6 +7,7 @@
     kubectl
     kustomize
     kubernetes-helm
+    kubectl-view-secret
 
     crossplane-cli
     argocd

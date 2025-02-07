@@ -24,6 +24,8 @@
     shell = "${pkgs.fish}/bin/fish";
     historyLimit = 100000;
     extraConfig = ''
+      set-option -g base-index 1 
+      set-option -gw pane-base-index 1
       set-option -g renumber-windows on
       set-option -g status-interval 1
       set-option -g set-titles on
@@ -31,6 +33,9 @@
       set-option -g automatic-rename on
 
       bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
+      bind c new-window -c "#{pane_current_path}" 
+      bind % split-window -h -c "#{pane_current_path}"
+      bind '"' split-window -c "#{pane_current_path}"
     '';
     plugins = with pkgs; [
       {
@@ -44,6 +49,12 @@
       }
       {
         plugin = tmuxPlugins.battery;
+      }
+      {
+        plugin = tmuxPlugins.extrakto;
+        extraConfig = ''
+          set -g @extrakto_clip_tool 'xsel -ib'
+        '';
       }
       {
         plugin = tmuxPlugins.pass;
