@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     plugins.persistence = {
-      enable = true;
+      enable = false;
       settings = {
         branch = false;
         need = 0;

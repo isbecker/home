@@ -71,6 +71,7 @@
           localcdn
           tab-stash
           enhancer-for-youtube
+          firenvim
         ];
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # for userChrome to work

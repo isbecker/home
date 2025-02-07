@@ -1,8 +1,8 @@
 {
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/master";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/6fe896e3159c87084e322d68909a0f1d0f4b13ed";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -42,6 +42,10 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vim-autoread = {
+      flake = false;
+      url = "github:djoshea/vim-autoread/24061f84652d768bfb85d222c88580b3af138dab";
     };
     # nix-snapshotter = {
     #   url = "github:isbecker/nix-snapshotter"; #5f7eae246a96b96c29f96bbab8f1fbcf51731c92";

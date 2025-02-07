@@ -9,6 +9,10 @@
       user.signingKey = "6173020131013ADB";
       commit.gpgsign = true;
       rerere.enabled = true;
+      fetch = {
+        auto = 1;
+        prune = true;
+      };
       url = {
         "ssh://git@cm.infra.he2pi.com" = {
           insteadOf = "https://cm.infra.he2pi.com";
@@ -34,4 +38,7 @@
       }
     ];
   };
+  home.packages = with pkgs; [
+    git-absorb
+  ];
 }

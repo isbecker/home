@@ -9,8 +9,10 @@
       font-family = "IosevkaTerm Nerd Font Mono";
       font-size = 10;
 
-      background-opacity = "0.9";
       window-decoration = "false";
     };
+  };
+  home.sessionVariables = {
+    GHOSTTY_RESOURCES_DIR = "${pkgs.ghostty}/share/ghostty";
   };
 }
