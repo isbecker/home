@@ -9,7 +9,7 @@
       {
         mode = "n";
         key = "<leader>ff";
-        action = "<cmd>lua require('telescope.builtin').find_files()<CR>";
+        action = "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>";
         #    lua = true;
         options = {
           silent = true;
@@ -20,7 +20,7 @@
       {
         mode = "n";
         key = "<leader>fg";
-        action = "<cmd>lua require('telescope.builtin').live_grep({hidden=false})<CR>";
+        action = "<cmd>lua require('telescope.builtin').live_grep({hidden=true})<CR>";
         #    lua = true;
         options = {
           silent = true;

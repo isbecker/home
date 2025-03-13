@@ -4,6 +4,8 @@
       enable = true;
       settings = {
         previewer = true;
+        bypass_save_filetypes = [ "alpha" "dashboard" ];
+        cwd_change_handling = true;
       };
     };
     keymaps = [

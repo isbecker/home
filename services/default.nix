@@ -4,7 +4,7 @@
     ./activity-watch.nix
     ./barrier.nix
     ./flameshot.nix
-    # ./podman.nix
+    ./globalprotect.nix
   ];
 
   services.copyq.enable = true;

@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     plugins.firenvim = {
-      enable = true;
+      enable = false; # Disabled
       luaConfig.post =
         ''
           vim.fn["firenvim#install"](0)

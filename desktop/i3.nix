@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, flake, ... }:
 {
   xsession.windowManager.i3 = {
     enable = true;
@@ -15,8 +15,8 @@
       gaps = {
         inner = 10;
         outer = 5;
-        # smartBorders = "on";
-        # smartGaps = "on";
+        smartBorders = "on";
+        smartGaps = true;
       };
       menu = "rofi -show combi";
       workspaceAutoBackAndForth = true;
@@ -33,16 +33,16 @@
       assigns = {
         "1: mail" = [
           {
-            class = "^Mozilla Firefox$";
-            title = "^Mail.* - Outlook";
+            class = "^firefox$";
+            title = "^Mail";
             # output = "primary";
           }
         ];
         "2: web" = [
-          { class = "^Mozilla Firefox$"; }
+          { class = "^firefox$"; }
         ];
         "3: term" = [
-          { class = "^kitty$"; }
+          { class = "^com.mitchellh.ghostty$"; }
         ];
         "4: slack" = [
           {
@@ -67,7 +67,7 @@
 
         "${modifier}+Return" = "exec ghostty";
         "${modifier}+space" = "exec rofi -show combi";
-        "${modifier}+Ctrl+space" = "exec ${config.xdg.configHome}/gigarandr/gigarandr.py";
+        "${modifier}+Ctrl+space" = "exec ${lib.getExe' flake.inputs.gigarandr.packages.${pkgs.system}.default "gigarandr"} run";
         "${modifier}+Ctrl+Shift+space" = "move workspace to output next";
         "${modifier}+Ctrl+Shift+Mod1+space" = "workspace back_and_forth";
         "${modifier}+Tab" = "workspace back_and_forth";
@@ -83,13 +83,24 @@
       };
       startup = [
         {
-          command = "feh --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.jpg";
+          command = "${lib.getExe pkgs.feh} --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.jpg";
           always = true;
           notification = true;
         }
         {
-          command = "systemctl --user restart activitywatch.service activitywatch-watcher-aw-watcher-afk.service activitywatch-watcher-aw-watcher-window.service barrierc.service flameshot.service fusuma.service polybar.service dunst.service picom.service copyq.service";
-          always = true;
+          command = "${lib.getExe config.programs.ghostty.package}";
+          notification = true;
+        }
+        {
+          command = "${lib.getExe config.programs.firefox.package}";
+          notification = true;
+        }
+        {
+          command = "${lib.getExe pkgs.slack}";
+          notification = true;
+        }
+        {
+          command = "zoom";
           notification = true;
         }
       ];

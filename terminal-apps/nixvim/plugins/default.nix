@@ -42,6 +42,7 @@ in
     ./barbar.nix
     ./barbecue.nix
     ./cmp.nix
+    ./codecompanion.nix
     ./conform.nix
     ./cursorline.nix
     ./dadbod.nix
@@ -49,7 +50,7 @@ in
     ./dropbar.nix # Disabled
     ./edgy.nix # Disabled
     ./filetypes.nix
-    ./firenvim.nix
+    ./firenvim.nix # Disabled
     ./flash.nix
     ./git.nix
     ./gitlab.nix
@@ -72,7 +73,9 @@ in
     ./toggleterm.nix
     ./treesitter.nix
     ./trouble.nix
+    ./twilight.nix
     ./which-key.nix
+    ./zen-mode.nix
 
     ./packer
   ];
