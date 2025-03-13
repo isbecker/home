@@ -58,21 +58,32 @@
             };
           };
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          firefox-color
-          ublock-origin
-          vimium
-          browserpass
-          darkreader
-          cookie-autodelete
-          sidebery
-          auto-tab-discard
-          aw-watcher-web
-          localcdn
-          tab-stash
-          enhancer-for-youtube
-          firenvim
-        ];
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            firefox-color
+            ublock-origin
+            vimium
+            browserpass
+            darkreader
+            cookie-autodelete
+            sidebery
+            auto-tab-discard
+            aw-watcher-web
+            localcdn
+            tab-stash
+            enhancer-for-youtube
+            # firenvim
+          ];
+          # settings."uBlock0@raymondhill.net".settings = {
+          #   selectedFilterLists = [
+          #     "ublock-filters"
+          #     "ublock-badware"
+          #     "ublock-privacy"
+          #     "ublock-unbreak"
+          #     "ublock-quick-fixes"
+          #   ];
+          # };
+        };
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # for userChrome to work
           "browser.startup.blankWindow" = "false";

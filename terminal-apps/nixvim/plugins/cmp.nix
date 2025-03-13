@@ -7,11 +7,11 @@
         experimental = { ghost_text = true; };
         sources = [
           # { name = "cmp_ai"; }
-          { name = "git"; }
+          # { name = "git"; }
           { name = "nvim_lsp"; }
           { name = "emoji"; }
           { name = "treesitter"; }
-          { name = "cmdline"; }
+          # { name = "cmdline"; }
           {
             name = "buffer"; # text within current buffer
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";

@@ -2,7 +2,7 @@
 {
   programs.ghostty = {
     enable = true;
-    package = (config.lib.nixGL.wrap pkgs.ghostty);
+    package = (config.lib.nixGL.wrappers.nvidia pkgs.ghostty);
     enableFishIntegration = true;
     settings = {
       theme = "catppuccin-mocha";
@@ -10,6 +10,13 @@
       font-size = 10;
 
       window-decoration = "false";
+      window-vsync = "false";
+      keybind = [
+        "global:super+escape=toggle_quick_terminal"
+      ];
+      custom-shader = "${config.xdg.dataHome}/ghostty/crt.glsl";
+      # custom-shader = "${config.xdg.dataHome}/ghostty/bloom.glsl";
+      custom-shader-animation = true;
     };
   };
   home.sessionVariables = {

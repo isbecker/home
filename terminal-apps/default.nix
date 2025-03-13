@@ -19,8 +19,6 @@
     # work.
     less
 
-    pass-git-helper
-
     gpg-tui
 
     jira-cli-go
@@ -28,5 +26,7 @@
     vault
 
     ollama
+
+    aider-chat
   ];
 }

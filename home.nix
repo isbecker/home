@@ -1,4 +1,4 @@
-{ flake, pkgs, config, nixgl, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
 
@@ -52,12 +52,26 @@
 
     # MONITOR = "DP-2";
   };
+  home.shell.enableShellIntegration = true;
 
   nix = {
     gc = {
       automatic = true;
       frequency = "weekly";
     };
+    # settings = {
+    #   extra-experimental-features = [
+    #     "auto-allocate-uids"
+    #     "cgroups"
+    #     "flakes"
+    #     "nix-command"
+    #     "impure-derivations"
+    #     "pipe-operators"
+    #   ];
+    #   allow-dirty = true;
+    #   allowed-users = "ibecker";
+    #   auto-optimise-store = true;
+    # };
   };
 
   # Nix packages to install to $HOME
@@ -72,6 +86,8 @@
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
     # nerd-fonts.zed-mono
+
+    nvidia-container-toolkit
   ];
 
   fonts.fontconfig.enable = true;
@@ -86,7 +102,17 @@
     '';
     executable = true;
   };
+  home.sessionVariables = {
+    NIX_PATH = "/home/ibecker/.nix-defexpr/channels";
+  };
 
+  # home.activation = {
+  #   startVpn = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  #     run ${pkgs.uutils-coreutils-noprefix}/bin/env --unset LD_LIBRARY_PATH \
+  #       ${lib.getExe pkgs.daemon} \
+  #         /opt/paloaltonetworks/globalprotect/PanGPUI start from-cli
+  #   '';
+  # };
 
   xdg = {
     enable = true;

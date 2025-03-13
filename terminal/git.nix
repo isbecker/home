@@ -4,6 +4,7 @@
     enable = true;
     userEmail = "ian.becker@he360.com";
     userName = "Ian Becker";
+    signing.format = "openpgp";
     extraConfig = {
       init.defaultBranch = "main";
       user.signingKey = "6173020131013ADB";

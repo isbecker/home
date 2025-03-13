@@ -2,6 +2,7 @@
 {
   imports = [
     ./firefox.nix
+    # ./ladybird.nix
     ./vscode.nix
   ];
 
