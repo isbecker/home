@@ -1,12 +1,16 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
+
+let
+  inherit (flake.config) me;
+in
 {
   programs.jujutsu = {
     enable = true;
     ediff = false;
     settings = {
       user = {
-        email = "ian@beckr.dev";
-        name = "Ian Becker";
+        email = me.email;
+        name = me.fullname;
         ui = {
           editor = "nvim";
         };
@@ -15,7 +19,7 @@
   };
   home.packages = with pkgs; [
     jjui
-    # lazyjj
-    # gg-jj
+    lazyjj
+    gg-jj
   ];
 }
