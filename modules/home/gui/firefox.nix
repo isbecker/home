@@ -29,14 +29,14 @@
         };
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {
-            "DuckDuckGo" = {
+            "ddg" = {
               name = "DuckDuckGo";
               keyword = "d";
               searchUrl = "https://duckduckgo.com/?q={searchTerms}";
             };
-            "Google" = {
+            "google" = {
               name = "Google";
               keyword = "g";
               searchUrl = "https://www.google.com/search?q={searchTerms}";

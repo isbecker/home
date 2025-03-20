@@ -13,7 +13,7 @@ in
 
   services.openssh.enable = true;
 
-  services.yubikey-agent.enable = true;
+  # services.yubikey-agent.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
   programs.gnupg.agent = {
     enable = true;

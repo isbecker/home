@@ -77,7 +77,7 @@
       };
       startup = [
         {
-          command = "${lib.getExe pkgs.feh} --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.jpg";
+          command = "${lib.getExe pkgs.feh} --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.png";
           always = true;
           notification = true;
         }
@@ -86,7 +86,7 @@
           notification = true;
         }
         {
-          command = "${lib.getExe config.programs.firefox.package}";
+          command = "${lib.getExe config.programs.librewolf.package}";
           notification = true;
         }
       ];
