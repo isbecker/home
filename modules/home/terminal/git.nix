@@ -16,9 +16,6 @@
       #credential = {
       #  helper = "${pkgs.pass-git-helper}/bin/pass-git-helper";
       #};
-      #credential."cm.infra.he2pi.com" = {
-      #  username = "ian.becker";
-      #};
     };
     includes = [
       {
