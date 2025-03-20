@@ -5,7 +5,7 @@
     ediff = false;
     settings = {
       user = {
-        email = "ian.becker@he360.com";
+        email = "ian@beckr.dev";
         name = "Ian Becker";
         ui = {
           editor = "nvim";
