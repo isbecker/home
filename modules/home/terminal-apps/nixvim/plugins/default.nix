@@ -52,7 +52,6 @@ in
     ./firenvim.nix
     ./flash.nix
     ./git.nix
-    ./gitlab.nix
     ./helm.nix
     ./inc-rename.nix
     ./indent.nix

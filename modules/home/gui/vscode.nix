@@ -46,24 +46,7 @@
       treefmt = {
         command = "${pkgs.treefmt}/bin/treefmt";
       };
-      gitlab = {
-        aiAssistedCodeSuggestions.enabled = false;
-        duo.enabledWithoutGitlabProject = false;
-      };
-      gitlens = {
-        remotes = [
-          {
-            domain = "cm.infra.he2pi.com";
-            type = "GitLab";
-          }
-        ];
-        autolinks = [
-          {
-            prefix = "INF-";
-            url = "https://jira.corp.he2pi.com/browse/INF-<num>";
-          }
-        ];
-      };
+      gitlens = { };
     };
     mutableExtensionsDir = false;
 
