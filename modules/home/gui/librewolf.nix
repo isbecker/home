@@ -71,6 +71,7 @@
             sponsorblock
             reddit-enhancement-suite
             old-reddit-redirect
+            h264ify
           ];
           # settings."uBlock0@raymondhill.net".settings = {
           #   selectedFilterLists = [
