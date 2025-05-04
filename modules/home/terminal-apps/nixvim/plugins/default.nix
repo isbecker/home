@@ -72,8 +72,6 @@ in
     ./treesitter.nix
     ./trouble.nix
     ./which-key.nix
-
-    ./packer
   ];
 
   programs.nixvim.plugins = {

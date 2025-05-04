@@ -9,7 +9,7 @@
     XDG_CURRENT_DESKTOP = "i3";
     TERMINAL = "ghostty";
     EDITOR = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     PAGER = "${pkgs.moar}/bin/moar";
     MOAR = "--style=catppuccin-macchiato";
   };

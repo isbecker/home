@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 
 let
-  inherit (flake.config) me;
+  #inherit (flake.config) me;
 in
 {
   programs.jujutsu = {
@@ -9,8 +9,8 @@ in
     ediff = false;
     settings = {
       user = {
-        email = me.email;
-        name = me.fullname;
+        email = "ian@beckr.dev";#me.email;
+        name = "Ian Becker";#me.fullname;
         ui = {
           editor = "nvim";
         };

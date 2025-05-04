@@ -2,11 +2,13 @@
 {
   imports = [
     ./librewolf.nix
-    # ./vscode.nix
+    ./vscode.nix
   ];
 
   home.packages = with pkgs; [
     qtpass
-    # slack
+    discord-krisp
+    signal-desktop
+    bazecor
   ];
 }

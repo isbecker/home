@@ -53,6 +53,9 @@
     extensions = with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
       with flake.inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace-release; [
 
+        github.copilot
+        github.copilot-chat
+
         # asvetliakov.vscode-neovim
         activitywatch.aw-watcher-vscode
 
@@ -71,7 +74,7 @@
         tamasfe.even-better-toml
 
         gitlab.gitlab-workflow
-        mhutchie.git-graph
+        # mhutchie.git-graph
         eamodio.gitlens
 
         foam.foam-vscode

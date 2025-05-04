@@ -3,17 +3,17 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  inherit (flake.config) me;
+  #inherit (flake.config) me;
 in
 {
   programs.git = {
     enable = true;
-    userEmail = me.email;
-    userName = me.fullname;
+    userEmail = "ian@beckr.dev"; #me.email;
+    userName = "Ian Becker"; #me.fullname;
     extraConfig = {
       init.defaultBranch = "main";
-      # user.signingKey = "";
-      # commit.gpgsign = true;
+      user.signingKey = "61EE3EEDF9579D46";
+      commit.gpgsign = true;
       rerere.enabled = true;
       fetch = {
         auto = 1;

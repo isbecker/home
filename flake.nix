@@ -52,6 +52,8 @@
       url = "github:isbecker/gigarandr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

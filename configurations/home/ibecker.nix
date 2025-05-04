@@ -1,41 +1,49 @@
-{ flake, pkgs, lib, config, ... }:
+{ flake, config, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  inherit (flake.config) me;
 in
 {
   imports = [
-    self.homeModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
     inputs.nur.modules.homeManager.default
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.chaotic.homeManagerModules.default
+    self.homeModules.default
   ];
   catppuccin = {
     enable = true;
+    # grub.enable = true;
     flavor = "macchiato";
+    accent = "lavender";
+    cursors = {
+      enable = true;
+      flavor = config.catppuccin.flavor;
+      accent = config.catppuccin.accent;
+    };
+    gtk = {
+      enable = true;
+      flavor = config.catppuccin.flavor;
+      accent = config.catppuccin.accent;
+      icon = {
+        enable = true;
+        flavor = config.catppuccin.gtk.flavor;
+        accent = config.catppuccin.gtk.accent;
+      };
+    };
   };
 
-  #nixGL = {
-  #  packages = inputs.nixgl.packages;
-  #  defaultWrapper = "mesa";
-  #  offloadWrapper = "nvidia";
-  #};
+  # Defined by /modules/home/me.nix
+  # And used all around in /modules/home/*
+  me = {
+    username = "ibecker";
+    fullname = "Ian Becker";
+    email = "johndoe@dream.com";
+  };
 
-
-  # To use the `nix` from `inputs.nixpkgs` on templates using the standalone `home-manager` template
-
-  # `nix.package` is already set if on `NixOS` or `nix-darwin`.
-  # TODO: Avoid setting `nix.package` in two places. Does https://github.com/juspay/nixos-unified-template/issues/93 help here?
-  nix.package = lib.mkDefault pkgs.nix;
-  home.packages = with pkgs; [
-    config.nix.package
-
-    discord
-    signal-desktop
-  ];
-
-  home.username = me.username;
-  home.homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${me.username}";
   home.stateVersion = "24.11";
+
+  home.pointerCursor = {
+    x11.enable = true;
+  };
 }

@@ -82,6 +82,10 @@
           notification = true;
         }
         {
+          command = "${lib.getExe pkgs.xorg.xrandr} --output DisplayPort-0 --mode 2560x1440 --rate 165.00 --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --right-of DisplayPort-0";
+          always = true;
+        }
+        {
           command = "${lib.getExe config.programs.ghostty.package}";
           notification = true;
         }

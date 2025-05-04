@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   programs.kitty = {
-    enable = true;
+    enable = false;
     #package = (config.lib.nixGL.wrap pkgs.kitty);
     shellIntegration.enableFishIntegration = true;
     # shellIntegration.enableNushellIntegration = true;

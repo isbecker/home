@@ -30,7 +30,3 @@ dev:
 [group('Main')]
 run:
   nix run
-
-[group('Main')]
-switch:
-  NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --flake .#tower-1 --impure --use-remote-sudo

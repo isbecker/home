@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, flake, ... }:
 {
   programs.browserpass = {
     enable = true;
@@ -9,7 +9,6 @@
   };
   programs.librewolf = {
     enable = true;
-    # package = (config.lib.nixGL.wrappers.nvidiaPrime pkgs.firefox);
 
     profiles = {
       default = {

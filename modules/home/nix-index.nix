@@ -11,7 +11,7 @@
   # https://github.com/nix-community/nix-index/issues/191
   programs.nix-index = {
     enable = true;
-    enableFishIntegration = true;
+    enableZshIntegration = true;
   };
   # nix-index-database.comma.enable = true;
 

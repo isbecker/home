@@ -14,6 +14,7 @@
       set -ag status-right "#{E:@catppuccin_status_session}"
     '';
   };
+
   programs.tmux = {
     enable = true;
     prefix = "C-a";

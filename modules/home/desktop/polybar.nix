@@ -54,7 +54,7 @@ in
         radius = 0;
 
         modules-left = "i3 title";
-        modules-right = "wireless-network cpu audio battery tray";
+        modules-right = "wireless-network cpu memory audio battery tray";
         modules-center = "date";
       };
       "bar/${bar_name}-2" = {
@@ -73,7 +73,7 @@ in
         radius = 0;
 
         modules-left = "i3 title";
-        modules-right = "wireless-network cpu audio battery tray";
+        modules-right = "wireless-network cpu memory audio battery tray";
         modules-center = "date";
       };
 
@@ -233,6 +233,18 @@ in
         format-padding = 1;
 
         label = "CPU %percentage%%";
+      };
+      "module/memory" = {
+        type = "internal/memory";
+
+        interval = "3";
+
+        format = " <label>";
+        format-foreground = secondary;
+        format-background = "\${colors.yellow}";
+        format-padding = 1;
+
+        warn-percentage = "95";
       };
     };
     script = ''
