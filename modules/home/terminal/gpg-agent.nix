@@ -7,7 +7,7 @@
     enableNushellIntegration = true;
     enableSshSupport = true;
 
-    pinentryPackage = pkgs.pinentry-rofi;
+    pinentry.package = pkgs.pinentry-rofi;
     defaultCacheTtl = 84000;
     defaultCacheTtlSsh = 84000;
     maxCacheTtl = 604800;

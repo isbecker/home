@@ -1,4 +1,4 @@
-{ flake, config, ... }:
+{ flake, config, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -13,7 +13,7 @@ in
   ];
   catppuccin = {
     enable = true;
-    # grub.enable = true;
+    mako.enable = false; # https://github.com/nix-community/home-manager/commit/d1bbab6b04d865d759505f33a5c6743bbb544074
     flavor = "macchiato";
     accent = "lavender";
     cursors = {
@@ -46,4 +46,21 @@ in
   home.pointerCursor = {
     x11.enable = true;
   };
+
+  home.activation.afterWriteBoundary = {
+    after = [ "writeBoundary" ];
+    before = [ ];
+    data = ''
+      rm -rf ${config.xdg.configHome}/Code/User/settings.json
+      rm -rf ${config.home.homeDirectory}/.vscode/extensions
+      find ~/.config/Code | while read -r path
+      do
+        $DRY_RUN_CMD chmod --recursive +w \
+          "$(readlink --canonicalize "$path")"
+      done
+    '';
+  };
+
+  home.packages = with pkgs; [ home-manager devenv ];
+
 }

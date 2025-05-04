@@ -16,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dream";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -29,8 +29,8 @@
   time.timeZone = "America/New_York";
 
   nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    # substituters = [ "https://hyprland.cachix.org" ];
+    # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     experimental-features = [ "nix-command" "flakes" ];
   };
 
@@ -134,6 +134,8 @@
 
     dxvk
     steam-run
+
+    clamav
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -154,6 +156,9 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.wg-quick.interfaces.wg0.configFile = "/home/ibecker/Downloads/wg-US-DC-26.conf";
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -177,5 +182,38 @@
 
   catppuccin.enable = true;
   catppuccin.grub.enable = true;
+  # catppuccin.grub.flavor = "macchiato";
   catppuccin.tty.enable = true;
+
+  # services.invidious = {
+  #   enable = true;
+  #   # sig-helper.enable = true;
+  #   http3-ytproxy.enable = true;
+  #
+  #   settings = {
+  #     hmac_key = "yi7beiCiaPaeneWeuc0e";
+  #
+  #     visitor_data = "CgtCMjJYWC1OWG91Zyiirr-6BjIKCgJVUxIEGgAgGw%3D%3D";
+  #     po_token = "MnQLcWu2RBegKQtJdSADtwjZpc-TsVkUzkr8AYrZr55Qse3Lw3iwgBsZT6lL041ozeJecZRI-sxPKpBYgA1tfaFM2klI-lHKR7ae6mkR2fpLOtKepXfYaLoduWgHIdCVpPOXn6FruwZGzWCFBbhHRrhI4mFQBw==";
+  #     db = {
+  #       user = "invidious";
+  #       dbname = "invidious";
+  #     };
+  #   };
+  #
+  # };
+  # services.postgresql = {
+  #   enable = true;
+  #   ensureUsers = [
+  #     { name = "invidious"; ensureDBOwnership = true; }
+  #   ];
+  #   ensureDatabases = [
+  #     "invidious"
+  #   ];
+  # };
+  # services.matrix-synapse.enable = true;
+
+  # services.clamav.daemon.enable = true;
+  # services.clamav.updater.enable = true;
+
 }

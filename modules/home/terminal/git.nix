@@ -12,8 +12,8 @@ in
     userName = "Ian Becker"; #me.fullname;
     extraConfig = {
       init.defaultBranch = "main";
-      user.signingKey = "61EE3EEDF9579D46";
-      commit.gpgsign = true;
+      # user.signingKey = "61EE3EEDF9579D46";
+      # commit.gpgsign = true;
       rerere.enabled = true;
       fetch = {
         auto = 1;
