@@ -29,10 +29,10 @@
     fd = {
       enable = true;
     };
-    thefuck = {
+    pay-respects = {
       enable = true;
       enableFishIntegration = true;
-      enableNushellIntegration = true;
+      # enableNushellIntegration = true;
     };
 
     dircolors = {

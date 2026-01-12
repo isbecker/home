@@ -54,6 +54,7 @@
           };
         };
         extensions = {
+          force = true;
           packages = with pkgs.nur.repos.rycee.firefox-addons; [
             firefox-color
             ublock-origin
@@ -66,21 +67,45 @@
             auto-tab-discard
             aw-watcher-web
             localcdn
-            enhancer-for-youtube
             sponsorblock
             reddit-enhancement-suite
             old-reddit-redirect
             h264ify
+            enhancer-for-youtube
           ];
-          # settings."uBlock0@raymondhill.net".settings = {
-          #   selectedFilterLists = [
-          #     "ublock-filters"
-          #     "ublock-badware"
-          #     "ublock-privacy"
-          #     "ublock-unbreak"
-          #     "ublock-quick-fixes"
-          #   ];
-          # };
+          settings."uBlock0@raymondhill.net".settings = {
+            selectedFilterLists = [
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-quick-fixes"
+              "ublock-unbreak"
+              "easylist"
+              "adguard-generic"
+              "adguard-mobile"
+              "easyprivacy"
+              "adguard-spyware-url"
+              "urlhaus-1"
+              "curben-phishing"
+              "plowe-0"
+              "fanboy-cookiemonster"
+              "ublock-cookies-easylist"
+              "adguard-cookies"
+              "ublock-cookies-adguard"
+              "fanboy-social"
+              "adguard-social"
+              "fanboy-thirdparty_social"
+              "easylist-chat"
+              "easylist-newsletters"
+              "easylist-notifications"
+              "easylist-annoyances"
+              "adguard-mobile-app-banners"
+              "adguard-other-annoyances"
+              "adguard-popup-overlays"
+              "adguard-widgets"
+              "ublock-annoyances"
+            ];
+          };
         };
         settings = {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # for userChrome to work

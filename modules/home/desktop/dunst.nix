@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 {
   services.dunst = {
-    enable = true;
+    enable = false;
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";

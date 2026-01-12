@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [
@@ -24,6 +23,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # resolve master hostname
+  # networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -49,30 +50,42 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
+  # # Enable the X11 windowing system.
+  # services.xserver = {
+  #   enable = true;
+  #   windowManager.i3.enable = true;
+  #   videoDrivers = [ "amdgpu" ];
+  # };
+  # services.displayManager = {
+  #   defaultSession = "none+i3";
+  #   # Enable automatic login for the user.
+  #   autoLogin = {
+  #     enable = true;
+  #     user = "ibecker";
+  #   };
+  # };
+  #
+  #
+  # # Enable the GNOME Desktop Environment.
+  # services.displayManager.gdm.enable = true;
+  # services.desktopManager.gnome.enable = true;
+  #
+  # # Configure keymap in X11
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "";
+  # };
+  security.polkit.enable = true;
+  programs.sway.enable = true;
+  console.keyMap = "us";
+  services.greetd = {
     enable = true;
-    windowManager.i3.enable = true;
-    videoDrivers = [ "amdgpu" ];
-  };
-  services.displayManager = {
-    defaultSession = "none+i3";
-    # Enable automatic login for the user.
-    autoLogin = {
-      enable = true;
-      user = "ibecker";
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd}/bin/agreety --cmd sway";
+        user = "ibecker";
+      };
     };
-  };
-
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -136,6 +149,14 @@
     steam-run
 
     clamav
+
+    kubernetes
+    kompose
+    kubectl
+    kustomize
+    k3s
+    k9s
+    nfs-utils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -157,7 +178,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  networking.wg-quick.interfaces.wg0.configFile = "/home/ibecker/Downloads/wg-US-DC-26.conf";
+  # networking.wg-quick.interfaces.wg0.configFile = "/home/ibecker/Downloads/wg-US-DC-26.conf";
 
 
   # This value determines the NixOS release from which the default
@@ -185,35 +206,34 @@
   # catppuccin.grub.flavor = "macchiato";
   catppuccin.tty.enable = true;
 
-  # services.invidious = {
-  #   enable = true;
-  #   # sig-helper.enable = true;
-  #   http3-ytproxy.enable = true;
-  #
-  #   settings = {
-  #     hmac_key = "yi7beiCiaPaeneWeuc0e";
-  #
-  #     visitor_data = "CgtCMjJYWC1OWG91Zyiirr-6BjIKCgJVUxIEGgAgGw%3D%3D";
-  #     po_token = "MnQLcWu2RBegKQtJdSADtwjZpc-TsVkUzkr8AYrZr55Qse3Lw3iwgBsZT6lL041ozeJecZRI-sxPKpBYgA1tfaFM2klI-lHKR7ae6mkR2fpLOtKepXfYaLoduWgHIdCVpPOXn6FruwZGzWCFBbhHRrhI4mFQBw==";
-  #     db = {
-  #       user = "invidious";
-  #       dbname = "invidious";
-  #     };
-  #   };
-  #
-  # };
-  # services.postgresql = {
-  #   enable = true;
-  #   ensureUsers = [
-  #     { name = "invidious"; ensureDBOwnership = true; }
-  #   ];
-  #   ensureDatabases = [
-  #     "invidious"
-  #   ];
-  # };
   # services.matrix-synapse.enable = true;
 
-  # services.clamav.daemon.enable = true;
-  # services.clamav.updater.enable = true;
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
 
+  xdg.portal = {
+    enable = true;
+
+    config = {
+      common = {
+        default = [
+          "gtk"
+        ];
+      };
+      i3 = {
+        default = [
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+      };
+    };
+
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
+  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
 }

@@ -9,7 +9,9 @@
     ./joshuto.nix
     ./jq.nix
     ./k9s.nix
+    ./opencode.nix
     ./pass.nix
+    ./protonvpn-cli.nix
     ./ranger.nix
   ];
 
@@ -23,5 +25,7 @@
     gpg-tui
 
     ollama
+
+    gh
   ];
 }

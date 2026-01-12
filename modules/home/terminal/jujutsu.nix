@@ -9,8 +9,8 @@ in
     ediff = false;
     settings = {
       user = {
-        email = "ian@beckr.dev";#me.email;
-        name = "Ian Becker";#me.fullname;
+        email = "ian@beckr.dev"; #me.email;
+        name = "Ian Becker"; #me.fullname;
         ui = {
           editor = "nvim";
         };

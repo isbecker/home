@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 {
   services.picom = {
-    enable = true;
+    enable = false;
     fade = true;
     fadeDelta = 5;
     backend = "glx";

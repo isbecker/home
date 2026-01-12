@@ -1,5 +1,4 @@
 { pkgs, ... }:
 {
-  home.shellAliases = {
-  };
+  home.shellAliases = { };
 }

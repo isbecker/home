@@ -1,4 +1,4 @@
-{ flake, config, pkgs, ... }:
+{ flake, config, pkgs, lib, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -7,8 +7,7 @@ in
   imports = [
     inputs.catppuccin.homeModules.catppuccin
     inputs.nur.modules.homeManager.default
-    inputs.nixvim.homeManagerModules.nixvim
-    inputs.chaotic.homeManagerModules.default
+    # inputs.chaotic.homeManagerModules.default
     self.homeModules.default
   ];
   catppuccin = {
@@ -21,16 +20,16 @@ in
       flavor = config.catppuccin.flavor;
       accent = config.catppuccin.accent;
     };
-    gtk = {
-      enable = true;
-      flavor = config.catppuccin.flavor;
-      accent = config.catppuccin.accent;
-      icon = {
-        enable = true;
-        flavor = config.catppuccin.gtk.flavor;
-        accent = config.catppuccin.gtk.accent;
-      };
-    };
+    # gtk = {
+    #   enable = true;
+    #   flavor = config.catppuccin.flavor;
+    #   accent = config.catppuccin.accent;
+    #   icon = {
+    #     enable = true;
+    #     flavor = config.catppuccin.flavor;
+    #     accent = config.catppuccin.flavor;
+    #   };
+    # };
   };
 
   # Defined by /modules/home/me.nix
@@ -38,8 +37,9 @@ in
   me = {
     username = "ibecker";
     fullname = "Ian Becker";
-    email = "johndoe@dream.com";
+    email = "ian@beckr.dev";
   };
+
 
   home.stateVersion = "24.11";
 
@@ -61,6 +61,20 @@ in
     '';
   };
 
-  home.packages = with pkgs; [ home-manager devenv ];
+  home.packages = with pkgs; [
+    home-manager
+    devenv
+
+    # (inputs.krew2nix.packages.x86_64-linux.kubectl.withKrewPlugins (plugins: [
+    #   plugins.view-secret
+    #   # plugins.pickdeep
+    #   plugins.node-shell
+    # ]))
+  ];
+
+  # services.screen-locker = {
+  #   enable = true;
+  #   lockCmd = "${lib.getExe pkgs.i3lock-color}";
+  # };
 
 }

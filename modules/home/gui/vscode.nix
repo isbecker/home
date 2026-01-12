@@ -2,6 +2,7 @@
 {
   programs.vscode = {
     enable = true;
+    # package = pkgs.vscode-fhs;
     #package = (config.lib.nixGL.wrappers.nvidiaPrime pkgs.vscode);
     profiles = {
       default = {
@@ -18,7 +19,7 @@
           terminal = {
             integrated = {
               fontFamily = "'IosevkaTerm Nerd Font Mono', 'monospace', monospace";
-              defaultProfile.linux = "tmux";
+              # defaultProfile.linux = "tmux";
             };
           };
           workbench = {
@@ -45,9 +46,9 @@
           direnv = {
             path.executable = "${config.home.profileDirectory}/bin/direnv";
           };
-          treefmt = {
-            command = "${pkgs.treefmt}/bin/treefmt";
-          };
+          # treefmt = {
+          #   command = "${pkgs.treefmt}/bin/treefmt";
+          # };
           # gitlens = { };
 
           # mcp = {
@@ -104,7 +105,7 @@
             activitywatch.aw-watcher-vscode
 
             catppuccin.catppuccin-vsc
-            catppuccin.catppuccin-vsc-icons
+            # catppuccin.catppuccin-vsc-icons
 
             bierner.github-markdown-preview
 
@@ -126,6 +127,8 @@
 
             upboundio.upbound
             kcl.kcl-vscode-extension
+
+            nefrob.vscode-just-syntax
           ];
       };
     };

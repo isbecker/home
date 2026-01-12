@@ -1,0 +1,3 @@
+{
+  programs.sesh.enable = true;
+}

@@ -1,25 +1,32 @@
 {
   programs.nixvim = {
+    
     plugins.neo-tree = {
       enable = true;
-      enableGitStatus = true;
-      enableModifiedMarkers = true;
-      enableRefreshOnWrite = true;
-      buffers = {
-        followCurrentFile = {
-          enabled = true;
-          leaveDirsOpen = false;
+
+      settings = {
+        enable_git_status = true;
+        enable_modified_markers = true;
+        enable_refresh_on_write = true;
+
+        buffers = {
+          follow_current_file = {
+            enabled = true;
+            leave_dirs_open = false;
+          };
         };
-      };
-      filesystem = {
-        bindToCwd = true;
-        useLibuvFileWatcher = true;
-        followCurrentFile = {
-          enabled = true;
-          leaveDirsOpen = false;
+
+        filesystem = {
+          bind_to_cwd = true;
+          use_libuv_file_watcher = true;
+          follow_current_file = {
+            enabled = true;
+            leave_dirs_open = false;
+          };
         };
       };
     };
+
 
     keymaps = [
       {

@@ -7,6 +7,10 @@
     ./picom.nix
     ./polybar.nix
     ./rofi.nix
+
+    ./kanshi.nix
+    ./sway.nix
+    ./waybar.nix
   ];
 
   programs.feh.enable = true;

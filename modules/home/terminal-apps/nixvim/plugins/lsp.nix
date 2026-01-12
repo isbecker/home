@@ -28,7 +28,6 @@ in
         ts_ls.enable = true;
         ruff.enable = true;
         dockerls.enable = true;
-        ansiblels.enable = true;
         terraformls.enable = true;
         html.enable = true;
         gitlab_ci_ls.enable = true;
@@ -42,14 +41,14 @@ in
           #   "tpl"
           # ];
         };
-        kcl = {
-          enable = true;
-          package = kcl-ls;
-          filetypes = [
-            "kcl"
-            "k"
-          ];
-        };
+        # kcl = {
+        #   enable = true;
+        #   package = kcl-ls;
+        #   filetypes = [
+        #     "kcl"
+        #     "k"
+        #   ];
+        # };
       };
 
       keymaps = {

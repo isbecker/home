@@ -32,7 +32,7 @@ let
 in
 {
   services.polybar = {
-    enable = true;
+    enable = false;
     package = pkgs.polybar.override {
       i3Support = true;
       pulseSupport = true;

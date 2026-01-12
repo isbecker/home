@@ -1,4 +1,8 @@
+{flake, ...}:
 {
+  imports = [
+    flake.inputs.nixvim.homeModules.nixvim 
+  ];
   programs.nixvim = {
     enable = true;
     colorschemes = {

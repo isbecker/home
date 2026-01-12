@@ -8,9 +8,11 @@ in
 {
   programs.git = {
     enable = true;
-    userEmail = "ian@beckr.dev"; #me.email;
-    userName = "Ian Becker"; #me.fullname;
-    extraConfig = {
+    settings = {
+      user = {
+        email = "ian@beckr.dev"; #me.email;
+        name = "Ian Becker"; #me.fullname;
+      };
       init.defaultBranch = "main";
       # user.signingKey = "61EE3EEDF9579D46";
       # commit.gpgsign = true;

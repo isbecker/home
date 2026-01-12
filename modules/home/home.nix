@@ -1,4 +1,4 @@
-{ flake, pkgs, config, nixgl, ... }:
+{ pkgs, lib, ... }:
 {
 
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -10,7 +10,7 @@
     TERMINAL = "ghostty";
     EDITOR = "nvim";
     BROWSER = "librewolf";
-    PAGER = "${pkgs.moar}/bin/moar";
+    PAGER = "${lib.getExe pkgs.moor}";
     MOAR = "--style=catppuccin-macchiato";
   };
 

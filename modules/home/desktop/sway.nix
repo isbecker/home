@@ -1,10 +1,13 @@
 { pkgs, lib, config, flake, ... }:
 {
-  xsession.windowManager.i3 = {
-    enable = false;
-
+  wayland.windowManager.sway = {
+    enable = true;
+    systemd.enable = true;
+    swaynag.enable = true;
+    wrapperFeatures.gtk = true;
     config = rec {
       modifier = "Mod4";
+      terminal = "${lib.getExe pkgs.ghostty}";
       fonts = {
         names = [ "IosevkaTerm Nerd Font Mono" ];
         style = "Bold Semi-Condensed";
@@ -22,7 +25,7 @@
       floating = {
         criteria = [
           {
-            title = "Volume Control";
+            title = "Steam - Update News";
           }
           {
             class = "Pavucontrol";
@@ -30,22 +33,15 @@
         ];
       };
       assigns = {
-        "1: mail" = [
-          {
-            class = "^Mozilla Firefox$";
-            title = "^Mail.* - Outlook";
-            # output = "primary";
-          }
-        ];
         "2: web" = [
-          { class = "^LibreWolf$"; }
+          { class = "^librewolf$"; }
         ];
         "3: term" = [
           { class = "^com.mitchellh.ghostty$"; }
         ];
         "4: msgs" = [
           {
-            class = "^Signal$|Discord$";
+            class = "^Signal$|^discord$";
             # output = "primary";
           }
         ];
@@ -60,12 +56,12 @@
 
         "${modifier}+Return" = "exec ghostty";
         "${modifier}+space" = "exec rofi -show combi";
-        "${modifier}+Ctrl+space" = "exec ${lib.getExe' flake.inputs.gigarandr.packages.${pkgs.system}.default "gigarandr"} run";
+        # "${modifier}+Ctrl+space" = "exec ${lib.getExe' flake.inputs.gigarandr.packages.${pkgs.system}.default "gigarandr"} run";
         "${modifier}+Ctrl+Shift+space" = "move workspace to output next";
         "${modifier}+Ctrl+Shift+Mod1+space" = "workspace back_and_forth";
         "${modifier}+Tab" = "workspace back_and_forth";
 
-        "${modifier}+Ctrl+Shift+Mod1+space+p" = "exec i3-resurrect save -w1";
+        # "${modifier}+Ctrl+Shift+Mod1+space+p" = "exec i3-resurrect save -w1";
 
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
@@ -76,26 +72,26 @@
       };
       startup = [
         {
-          command = "${lib.getExe pkgs.feh} --bg-scale ${config.home.homeDirectory}/Pictures/wallpaper.png";
+          command = "${lib.getExe config.services.swww.package} img ${config.home.homeDirectory}/Pictures/wallpaper.png";
           always = true;
-          notification = true;
+          # notification = true;
         }
-        {
-          command = "${lib.getExe pkgs.xorg.xrandr} --output DisplayPort-0 --mode 2560x1440 --rate 165.00 --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --right-of DisplayPort-0";
-          always = true;
-        }
+        # {
+        #   command = "${lib.getExe pkgs.xorg.xrandr} --output DisplayPort-0 --mode 2560x1440 --rate 165.00 --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --right-of DisplayPort-0";
+        #   always = true;
+        # }
         {
           command = "${lib.getExe config.programs.ghostty.package}";
-          notification = true;
+          # notification = true;
         }
         {
           command = "${lib.getExe config.programs.librewolf.package}";
-          notification = true;
+          # notification = true;
         }
         {
           command = "${lib.getExe' pkgs.gnome-keyring "gnome-keyring-daemon"} --start --components=secrets";
           always = true;
-          notification = false;
+          # notification = false;
         }
       ];
       colors = {
@@ -166,4 +162,9 @@
       set $crust #181926
     '';
   };
+  # services.swaync.enable = true;
+  services.mako.enable = true;
+  services.swayosd.enable = true;
+  services.swww.enable = true;
+  services.wl-clip-persist.enable = true;
 }
