@@ -1,3 +1,6 @@
 {
-  programs.sesh.enable = true;
+  programs.sesh = {
+    enable = true;
+    enableTmuxIntegration = true;
+  };
 }

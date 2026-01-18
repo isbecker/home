@@ -11,6 +11,7 @@
     ./jujutsu.nix
     ./kitty.nix
     ./nushell.nix
+    ./sesh.nix
     ./starship.nix
     ./tmux.nix
   ];

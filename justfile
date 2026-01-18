@@ -31,6 +31,6 @@ dev:
 run:
   nix run
 
-
-r:
+[group('Main')]
+switch:
  NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --flake .#dream --sudo --impure 

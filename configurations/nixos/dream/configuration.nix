@@ -56,14 +56,20 @@
   #   windowManager.i3.enable = true;
   #   videoDrivers = [ "amdgpu" ];
   # };
-  # services.displayManager = {
-  #   defaultSession = "none+i3";
-  #   # Enable automatic login for the user.
-  #   autoLogin = {
-  #     enable = true;
-  #     user = "ibecker";
-  #   };
-  # };
+  services.displayManager = {
+    # probably doesn't do anyything
+    defaultSession = "sway";
+    enable = true;
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    # Enable automatic login for the user.
+    autoLogin = {
+      enable = true;
+      user = "ibecker";
+    };
+  };
   #
   #
   # # Enable the GNOME Desktop Environment.
@@ -78,15 +84,15 @@
   security.polkit.enable = true;
   programs.sway.enable = true;
   console.keyMap = "us";
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd}/bin/agreety --cmd sway";
-        user = "ibecker";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd}/bin/agreety --cmd sway";
+  #       user = "ibecker";
+  #     };
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -202,9 +208,11 @@
   };
 
   catppuccin.enable = true;
+  catppuccin.cache.enable = true;
   catppuccin.grub.enable = true;
-  # catppuccin.grub.flavor = "macchiato";
+  catppuccin.grub.flavor = "macchiato";
   catppuccin.tty.enable = true;
+  catppuccin.sddm.enable = true;
 
   # services.matrix-synapse.enable = true;
 

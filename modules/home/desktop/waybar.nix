@@ -25,12 +25,22 @@ in
           "clock"
         ];
         modules-right = [
+          "pulseaudio"
+          "pulseaudio/slider"
           "cpu"
           "memory"
           "network"
           # "wlr/taskbar"
           "tray"
         ];
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = "󰝟 muted";
+          format-icons = {
+            default = [ "󰕿" "󰖀" "󰕾" ];
+          };
+          tooltip = false;
+        };
       };
     };
     style = ''
@@ -85,7 +95,21 @@ in
       #window {
         background: @surface0;
         color: @text;
+        margin: 6px 6px;
+        padding: 4px 12px;
+        border-radius: 12px;
+
+        font-weight: 600;
+
+        /* keep it from taking over the whole bar */
+        min-width: 0;
+
       }
+      #window.empty {
+        background: @mantle;
+        color: @overlay1;
+      }
+
       #clock {
         padding: 4px 14px;
         margin: 6px 6px;
@@ -175,6 +199,58 @@ in
 
       tooltip label {
         color: @text;
+      }
+      /* Pulseaudio slider container */
+      #pulseaudio-slider {
+        margin: 6px 6px;
+        padding: 4px 12px;
+        border-radius: 12px;
+
+        background: @surface0;
+      }
+
+      /* Hide the actual GTK slider knob */
+      #pulseaudio-slider slider {
+        min-height: 0px;
+        min-width: 0px;
+        opacity: 0;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+      }
+
+      /* The track */
+      #pulseaudio-slider trough {
+        min-height: 10px;
+        min-width: 90px;
+        border-radius: 999px;
+
+        background: @crust;
+      }
+
+      /* The filled portion */
+      #pulseaudio-slider highlight {
+        min-width: 10px;
+        border-radius: 999px;
+
+        background: @mauve;
+      }
+      #pulseaudio.muted + #pulseaudio-slider highlight {
+        background: @overlay0;
+      }
+      #pulseaudio {
+        margin: 6px 0 6px 6px;
+        padding: 4px 10px;
+        border-radius: 12px;
+
+        background: @surface0;
+        color: @text;
+        font-weight: 600;
+      }
+
+      #pulseaudio.muted {
+        background: @surface0;
+        color: @overlay1;
       }
     '';
 
