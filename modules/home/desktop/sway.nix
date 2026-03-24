@@ -7,7 +7,7 @@
     wrapperFeatures.gtk = true;
     config = rec {
       modifier = "Mod4";
-      terminal = "${lib.getExe pkgs.ghostty}";
+      terminal = "${lib.getExe config.home.programs.ghostty.package}";
       fonts = {
         names = [ "IosevkaTerm Nerd Font Mono" ];
         style = "Bold Semi-Condensed";
@@ -34,18 +34,23 @@
       };
       assigns = {
         "2: web" = [
-          { class = "^librewolf$"; }
+          { app_id = "^librewolf$"; }
         ];
         "3: term" = [
-          { class = "^com.mitchellh.ghostty$"; }
+          { app_id = "^com.mitchellh.ghostty$"; }
         ];
         "4: msgs" = [
-          {
-            class = "^Signal$|^discord$";
-            # output = "primary";
-          }
+          { class = "^discord$"; }
+          { app_id = "^signal$"; }
         ];
       };
+      workspaceOutputAssign = [
+        {
+
+          workspace = "3: term";
+          output = "DP-1";
+        }
+      ];
       keybindings = lib.mkOptionDefault {
         "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
@@ -56,8 +61,8 @@
 
         "${modifier}+Return" = "exec ghostty";
         "${modifier}+space" = "exec rofi -show combi";
-        # "${modifier}+Ctrl+space" = "exec ${lib.getExe' flake.inputs.gigarandr.packages.${pkgs.system}.default "gigarandr"} run";
-        "${modifier}+Ctrl+Shift+space" = "move workspace to output next";
+        "${modifier}+Ctrl+space" = "exec ${lib.getExe' config.services.kanshi.package "kanshictl"} reload";
+        "${modifier}+Ctrl+Shift+space" = "move workspace to output left";
         "${modifier}+Ctrl+Shift+Mod1+space" = "workspace back_and_forth";
         "${modifier}+Tab" = "workspace back_and_forth";
 
@@ -75,6 +80,10 @@
           command = "${lib.getExe config.services.swww.package} img ${config.home.homeDirectory}/Pictures/wallpaper.png";
           always = true;
           # notification = true;
+        }
+        {
+          command = "${lib.getExe' config.services.kanshi.package "kanshictl"} reload";
+          always = true;
         }
         # {
         #   command = "${lib.getExe pkgs.xorg.xrandr} --output DisplayPort-0 --mode 2560x1440 --rate 165.00 --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --right-of DisplayPort-0";

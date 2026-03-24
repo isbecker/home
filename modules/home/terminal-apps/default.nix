@@ -1,6 +1,7 @@
 { flake, pkgs, ... }:
 {
   imports = [
+    ./agents
     ./nixvim
     ./awscli.nix
     ./btop.nix
